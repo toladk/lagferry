@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="d-flex justify-content-end">
+    <svg-icon
+      src="/assets/icons/close-modal-icon.svg"
+      class="close-dialog-svg"
+      (click)="closeDialog()"
+    ></svg-icon>
+  </div>
+
+  <img src="assets/images/Map.png" alt="router map" class="img" />
+
+  <form>
+    <h2>Add Route</h2>
+    <div class="row justify-content-between">
+      <div class="col-12 col-md-6 mb-3">
+        <label for="title"> Title </label>
+        <input type="text" id="title" placeholder="Enter name of route" />
+      </div>
+
+      <div class="col-12 col-md-6">
+        <label> Upload </label>
+        <div class="input-card">
+          <svg-icon
+            src="/assets/icons/upload_icon.svg"
+            class="text-center"
+          ></svg-icon>
+          <p>
+            <span>Upload zip file<br />here </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <input type="submit" value="Publish" class="btn w-sm-full" />
+  </form>
+</div>

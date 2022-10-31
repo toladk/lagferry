@@ -1,0 +1,40 @@
+.fieldset {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.button-row {
+  margin: 1rem auto 1rem;
+  width: 100%;
+  display: flex;
+}
+.login-button {
+  width: 100%;
+  margin: auto;
+  background: #0097F1;
+  transition: all 0.7s ease;
+  color: #fff;
+}
+
+:host ::ng-deep {
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  .mat-progress-spinner {
+    width: 20px !important;
+    height: 20px !important;
+    display: inline-block !important;
+    margin-right: 0.7rem;
+
+    svg {
+      width: 100% !important;
+      height: 100% !important;
+    }
+    circle {
+      stroke: #ffffff !important;
+    }
+  }
+}

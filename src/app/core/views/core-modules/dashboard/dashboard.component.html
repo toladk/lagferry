@@ -1,0 +1,114 @@
+<div class="dasboard-wrapper">
+
+  <!-- <aside class="profilebar">
+    <div class="profilebar_top">
+      <div>
+      </div>
+      <div>
+        <svg-icon src="assets/icons/log-out-icon.svg" [svgClass]="'profilebar_top_icon'" [applyClass]="true" (click)="authService.logout()"></svg-icon>
+      </div>
+    </div>
+
+    <div class="profilebar_mid">
+      <div class="profilebar_mid_profile">
+        <img class="profilebar_mid_profile_img" src="assets/images/profile.png" alt="" srcset="">
+        <div class="profilebar_mid_profile_name">
+          <span><b>{{userInfo?.firstname}} &nbsp; {{userInfo?.lastname}}</b></span> &nbsp;
+          <mat-icon (click)="openEditModal()" color="primary" style="font-size: 14px; cursor: pointer;">edit</mat-icon>
+        </div>
+        <div class="profilebar_mid_profile_pos">
+          <span>Administrator</span> &nbsp;
+          <mat-icon (click)="openEditModal()" color="primary" style="font-size: 15px; cursor: pointer;">lock</mat-icon>
+        </div>
+        <small style="color: #9B9B9B;opacity: 0.7;">{{userInfo?.email}}</small>
+      </div>
+    </div>
+ </aside> -->
+
+  <div class="dashboard_content">
+
+    <h3 class="analytics">Overview</h3>
+
+    <div class="dashboard_content_counter">
+
+      <div class="dashboard_content_counter_card">
+        <div class="dashboard_content_counter_card_icon">
+          <span><svg-icon src="assets/svg/boat_route_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
+        </div>
+        <div class="dashboard_content_counter_card_text">
+          <span class="dashboard_content_counter_card_text_count">75KM</span>
+          <span class="dashboard_content_counter_card_text_field">Total boat route covered</span>
+        </div>
+      </div>
+
+      <div class="dashboard_content_counter_card">
+        <div class="dashboard_content_counter_card_icon">
+          <span><svg-icon src="assets/svg/boat_registered_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
+        </div>
+        <div class="dashboard_content_counter_card_text">
+          <span class="dashboard_content_counter_card_text_count">24</span>
+          <span class="dashboard_content_counter_card_text_field">Total boats registered</span>
+        </div>
+      </div>
+
+      <div class="dashboard_content_counter_card">
+        <div class="dashboard_content_counter_card_icon">
+          <span><svg-icon src="assets/svg/total_incidents_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
+        </div>
+        <div class="dashboard_content_counter_card_text">
+          <span class="dashboard_content_counter_card_text_count">120</span>
+          <span class="dashboard_content_counter_card_text_field">Total incidents recorded</span>
+        </div>
+      </div>
+
+      <div class="dashboard_content_counter_card">
+        <div class="dashboard_content_counter_card_icon">
+          <span><svg-icon src="assets/svg/total_feedback_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
+        </div>
+        <div class="dashboard_content_counter_card_text">
+          <span class="dashboard_content_counter_card_text_count">150</span>
+          <span class="dashboard_content_counter_card_text_field">Total feedback recieved</span>
+        </div>
+      </div>
+
+      <div class="dashboard_content_counter_card">
+        <div class="dashboard_content_counter_card_icon">
+          <span><svg-icon src="assets/svg/total_trips_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
+        </div>
+        <div class="dashboard_content_counter_card_text">
+          <span class="dashboard_content_counter_card_text_count">270</span>
+          <span class="dashboard_content_counter_card_text_field">Total trips carried out</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="analytics">Analytics</h3>
+
+    <div class="charts">
+      <div class="charts_line">
+
+        <div id="linechartdiv">
+        </div>
+      </div>
+
+      <div class="charts_second">
+        <div class="charts_second_pie">
+          <div id="piechartdiv">
+
+          </div>
+
+        </div>
+
+        <div class="charts_second_bar">
+          <div id="barchartdiv">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+

@@ -1,0 +1,36 @@
+<div class="row m-0 d-flex justify-content-center">
+  <div class="mt-5"></div>
+  <div class="col-12 col-sm-12 col-md-11 col-lg-11">
+    <div class="d-flex justify-content-between align-items-end">
+      <p class="page-title">Terminals</p>
+
+      <button mat-flat-button  (click)="createTerminalDialog()">
+        <svg-icon src="/assets/icons/plus.svg" class="me-1"></svg-icon>
+        <span>Add Terminal</span>
+      </button>
+    </div>
+
+  <div class="row m-0">
+
+    <div class="col-12 col-sm-12 col col-md-6 col-lg-4 col-xl-4" *ngFor="let terminal of terminals">
+      <div class="card-contents mt-2 mb-2 " [routerLink]="[''+terminal.terminalId]">
+
+
+        <img *ngIf="terminal.image" src="{{terminal.image}}" alt="">
+        <img *ngIf="!terminal.image" src="/assets/images/terminal_thumbmil.svg" alt="">
+
+        <div class="ms-3">
+          <p class="card-title mb-0 mt-2">{{terminal.name}}</p>
+          <p class="card-subtitle">
+            <svg-icon src="/assets/icons/location-pointer.svg"></svg-icon>
+            {{terminal.location}} <br>
+            <svg-icon src="/assets/icons/dot.svg"></svg-icon>
+            {{terminal.schedule}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

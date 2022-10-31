@@ -1,0 +1,74 @@
+<!-- Close Modal Icon -->
+<div class="d-flex justify-content-end">
+  <svg-icon
+    src="/assets/icons/close-modal-icon.svg"
+    class="close-dialog-svg"
+    (click)="closeDialog()"
+  ></svg-icon>
+</div>
+
+<!-- Upload Image -->
+<div class="import-img-background">
+  <svg-icon src="/assets/icons/add-photo.svg" (click)="addPhoto.click()" class="svg"></svg-icon>
+  <input
+    type="file"
+    class="file-input"
+    (change)="readImage($event);"
+    accept=".jpg, .png"
+    name="image"
+    #addPhoto
+  >
+  <img *ngIf="!imageURL" src="/assets/images/entypo_image-inverted.png" alt="" class="img-frame">
+  <img *ngIf="imageURL && imageURL !== ''" [src]="imageURL" alt="" class="uploaded-img">
+</div>
+
+<!-- Form -->
+<div class="row m-0 py-4 px-lg-5">
+  <div class="col-12">
+    <h1 mat-dialog-title class="ps-2">Add Terminal</h1>
+  </div>
+
+  <div class="">
+    <form [formGroup]="terminalForm" (ngSubmit)="onSubmit()">
+      <div class="row m-0 pb-2 d-flex align-items-center">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <label for="name" class="form-label">Upload</label>
+          <div class="mb-4 input-card">
+              <svg-icon src="/assets/icons/upload_icon.svg" (click)="uploadZip.click()" class="text-center"></svg-icon>
+              <p>
+                <span *ngIf="!zipFile">Upload zip file<br>here </span>
+                <span *ngIf="zipFile">{{zipFile}}</span>
+              </p>
+            <input
+              type="file"
+              class="file-input"
+              formControlName="zip"
+              id="zip"
+              accept=".zip"
+              placeholder="Enter Name of Terminal"
+              (change)="readZipFile($event);"
+              #uploadZip
+            >
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="map-card">
+            <img src="/assets/images/Map.png" alt="map">
+          </div>
+        </div>
+      </div>
+
+      <div class=" row d-flex justify-content-center">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <button mat-flat-button type="submit">
+            <svg-icon src="/assets/icons/plus.svg" class="me-1"></svg-icon>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+    </form>
+
+
+  </div>
+</div>

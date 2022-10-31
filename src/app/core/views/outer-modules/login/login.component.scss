@@ -1,0 +1,133 @@
+.login-content {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(
+      228deg,
+      rgba(0, 166, 255, 0.55),
+      hsla(240, 100%, 20%, 0.8)
+    ),
+    url("/assets/images/login-bg.jpg") center center;
+}
+.form {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+}
+.login-logo {
+  text-align: center;
+  margin: 2rem 0;
+  img {
+    width: 40%;
+    object-fit: cover;
+    height: auto;
+  }
+}
+.form-field,
+.forgot-password {
+  width: 90%;
+  margin: auto auto 0.6rem;
+}
+.forgot-password {
+  margin-bottom: 0;
+  a {
+    color: #efefef;
+    text-transform: capitalize;
+  }
+}
+.button-row {
+  margin: 3rem auto 1rem;
+  width: 90%;
+  display: flex;
+}
+.login-button {
+  width: 100%;
+  margin: auto;
+  background: #efefef;
+  transition: all 0.7s ease;
+  color: #000066;
+}
+
+:host ::ng-deep {
+  .login-content {
+    .mat-form-field-appearance-fill .mat-form-field-flex {
+      border-radius: 4px;
+      padding: 0em 0.75em 0;
+      background: rgba(255, 255, 255, 0.55) !important;
+      align-items: center;
+    }
+    .mat-form-field-subscript-wrapper {
+      padding: 0;
+    }
+
+    .mat-progress-spinner {
+      width: 20px !important;
+      height: 20px !important;
+      display: inline-block !important;
+      margin-right: 0.7rem;
+
+      svg {
+        width: 100% !important;
+        height: 100% !important;
+      }
+      circle {
+        stroke: #000066 !important;
+      }
+    }
+
+    .mat-form-field {
+      .mat-form-field-underline {
+        display: none;
+      }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        transition: all 5000s ease-in-out 0s !important;
+        transition-property: background-color, color !important;
+      }
+      ::placeholder,
+      .mat-icon {
+        color: rgb(0, 0, 102);
+      }
+      .mat-error small {
+        font-size: 0.8rem;
+      }
+    }
+    .mat-form-field.mat-form-field-invalid {
+      .mat-form-field-underline {
+        display: block;
+      }
+    }
+  }
+}
+
+.copyright-content {
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  img {
+    object-fit: cover;
+    width: 150px;
+  }
+}
+@media (min-width: 576px) {
+  .form {
+    width: 50%;
+    padding: 2rem;
+  }
+}
+@media (min-width: 992px) {
+  .form {
+    width: 30%;
+  }
+  .login-button:hover {
+    width: 60%;
+  }
+}

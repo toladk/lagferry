@@ -1,0 +1,139 @@
+<div class="page_body">
+  <div class="head_buttons">
+    <div class="head_buttons_left">
+      <button class="head_buttons_left_boat" (click)="goto('/boats')">Boats</button>
+      <button class="head_buttons_left_crew" (click)="goto('/crew-members')">Crew Members</button>
+    </div>
+
+    <div class="head_buttons_right">
+      <button (click)="creatUserDialog()">
+        <svg-icon src="/assets/icons/plus.svg" class="me-1"></svg-icon>
+         Add New Crew
+      </button>
+    </div>
+  </div>
+
+  <div class="boat_title">
+    <h3>All Crew Members</h3>
+  </div>
+
+  <div class="boats_container">
+      <div class="boats_container_card" *ngFor="let crew of crewMember">
+        <div class="card-contents">
+          <div class="card-contents-left">
+              <div class="card_initials">
+                {{crew.firstName.charAt(0)}}{{crew.lastName.charAt(0)}}
+              </div>
+
+              <div class="ms-3">
+                <p class="card-title mb-0 mt-2">
+                  {{ crew.firstName }} {{ " " }}{{ crew.lastName }}
+                </p>
+                <div class="card-subtitle mt-1">
+                  <div class="mb-1" >
+                    {{ crew.email }}
+                  </div>
+                  <div>
+                    {{crew.type | titlecase}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="access-details">
+            <div class="more">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item *ngIf="crew.status !=='ACTIVE'" (click)="activateUser(crew)">
+                  <mat-icon>lock_open</mat-icon>
+                  <span>Enable</span>
+                </button>
+                <button *ngIf="crew.status ==='ACTIVE'" mat-menu-item (click)="deactivateUser(crew)">
+                  <mat-icon>lock</mat-icon>
+                  <span>Disable</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>delete</mat-icon>
+                  <span>Remove</span>
+                </button>
+              </mat-menu>
+            </div>
+            <div class="previlage">
+              <svg-icon *ngIf="crew.status ==='ACTIVE'"src="assets/icons/unlocked-key.svg" [applyClass]="true" [svgClass]="'unlocked'">
+              </svg-icon>
+              <svg-icon *ngIf="crew.status !=='ACTIVE'"src="assets/icons/locked-key.svg" [applyClass]="true" [svgClass]="'unlocked'">
+              </svg-icon>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+</div>
+
+
+<!-- <div class="top-page">
+  <div class="page-title">
+    <p>Boats Crew Management</p>
+  </div>
+
+  <div class="add-btn">
+    <button mat-stroked-button color="primary" (click)="creatUserDialog()">
+      <span>Add Crew Member</span>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="users-content">
+
+  <div class="user" *ngFor="let user of crew">
+    <div class="user-details">
+      <img src="assets/images/no-image.png" alt="user" />
+      <div class="details">
+        <h6 class="username">
+          {{ user.firstName }} {{ " " }}{{ user.lastName }}
+        </h6>
+        <p class="email">{{ user.email }}</p>
+        <p class="phone">{{ user.phoneNumber }}</p>
+        <h6 *ngIf="user.type === 'CAPTAIN'" class="department"> <mat-icon color="primary" class="mat-18">directions_boat</mat-icon>   {{user.type | titlecase}}</h6>
+        <h6 *ngIf="user.type === 'DECKHAND'" class="department"> <mat-icon color="primary" class="mat-18">rowing</mat-icon>   {{user.type | titlecase}}</h6>
+      </div>
+    </div>
+    <div class="access-details">
+      <div class="more">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngIf="user.status !=='ACTIVE'" (click)="activateUser(user)">
+            <mat-icon>lock_open</mat-icon>
+            <span>Enable</span>
+          </button>
+          <button *ngIf="user.status ==='ACTIVE'" mat-menu-item (click)="deactivateUser(user)">
+            <mat-icon>lock</mat-icon>
+            <span>Disable</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Remove</span>
+          </button>
+        </mat-menu>
+      </div>
+      <div class="previlage">
+        <svg-icon *ngIf="user.status ==='ACTIVE'"src="assets/icons/unlocked-key.svg" [applyClass]="true" [svgClass]="'unlocked'">
+        </svg-icon>
+        <svg-icon *ngIf="user.status !=='ACTIVE'"src="assets/icons/locked-key.svg" [applyClass]="true" [svgClass]="'unlocked'">
+        </svg-icon>
+      </div>
+    </div>
+  </div>
+
+</div>
+ -->

@@ -1,0 +1,22 @@
+.main-wrapper {
+  // background-image: url("/assets/svg/page_background.svg");
+  // background-color: #cccccc;
+  // height: 100vh;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+}
+.dashboard-content {
+  // padding: 2rem 0;
+  background-image: url("/assets/svg/page_background.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+@media (min-width: 992px) {
+  .main-wrapper {
+    padding-left: 200px;
+    padding-right: 0px;
+  }
+}

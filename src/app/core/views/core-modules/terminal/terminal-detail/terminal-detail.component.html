@@ -1,0 +1,114 @@
+<div class="row m-0 d-flex justify-content-center">
+  <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 mt-3">
+    <div class="d-flex justify-content-between">
+      <svg-icon src="/assets/icons/navigation-arrow.svg" [routerLink]="['/schedule']"></svg-icon>
+      <button mat-flat-button (click)="createSchedule()">
+        <svg-icon src="/assets/icons/plus.svg" class="me-1"></svg-icon>
+        <span>Add Schedule</span>
+      </button>
+    </div>
+
+    <div class="details">
+
+      <img src="/assets/images/create-terminal-dialog.png" alt="terminal">
+
+      <!-- <img *ngIf="!terminalDetails?.image" src="/assets/images/create-terminal-dialog.png" alt="terminal">
+      <img *ngIf="terminalDetails?.image" src="{{terminalDetails?.image}}" alt="terminal"> -->
+
+      <div class="d-flex align-items-center">
+        <p class="terminal-title">{{terminalDetails?.name}}</p>
+
+        <!-- <button mat-flat-button (click)="editSchedule()">
+          <svg-icon src="/assets/icons/edit-icon.svg" class="me-1"></svg-icon>
+          <span>Edit</span>
+        </button> -->
+      </div>
+
+      <!-- <p class="terminal-sub-title">
+        <svg-icon src="/assets/icons/location-pointer.svg"></svg-icon> &nbsp;
+        {{detail.location}} &nbsp;
+        <svg-icon src="/assets/icons/dot.svg"></svg-icon> &nbsp;
+        {{detail.schedule}}
+      </p> -->
+    </div>
+  </div>
+
+  <div class="row m-0 d-flex justify-content-center">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-11 schedule-table-section ">
+      <p class="schedule-title mb-0 ms-lg-3">Schedule</p>
+
+      <div class="table-responsive mt-0">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!-- Route Column -->
+          <ng-container matColumnDef="route">
+            <th mat-header-cell *matHeaderCellDef> Route </th>
+            <td mat-cell *matCellDef="let element">
+              <span class="round-table-data">{{element.startTerminal?.name}} - {{element.endTerminal?.name}}</span>
+            </td>
+          </ng-container>
+
+          <!-- Date Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element?.scheduleDate}} </td>
+          </ng-container>
+
+          <!-- Time Column -->
+          <ng-container matColumnDef="time">
+            <th mat-header-cell *matHeaderCellDef> Time </th>
+            <td mat-cell *matCellDef="let element">
+              <span class="round-table-data" *ngFor="let time of element?.scheduleTime">
+                {{time}}
+              </span>
+            </td>
+          </ng-container>
+
+          <!-- Vessel Column -->
+          <ng-container matColumnDef="vessel">
+            <th mat-header-cell *matHeaderCellDef> Vessel </th>
+            <td mat-cell *matCellDef="let element"> {{element?.vessel?.name}} </td>
+          </ng-container>
+
+          <!-- Captain Column -->
+          <ng-container matColumnDef="captain">
+            <th mat-header-cell *matHeaderCellDef> Captain </th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngFor="let captain of element?.vessel?.crewMembers">
+                <ng-container *ngIf="captain?.type ==='CAPTAIN'">
+                  <img *ngIf="captain.image" src="{{captain?.image}}" alt="">
+                  <img *ngIf="!captain.image" src="/assets/images/profileImg.png" alt="">
+                  {{captain?.firstName}}
+                </ng-container>
+              </span>
+            </td>
+          </ng-container>
+
+          <!-- Crew Column -->
+          <ng-container matColumnDef="crew">
+            <th mat-header-cell *matHeaderCellDef> Crew </th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngFor="let crew of element.vessel?.crewMembers">
+                <ng-container *ngIf="crew?.type !=='CAPTAIN'">
+                  <img *ngIf="!crew?.image" src="/assets/images/profileImg.png" alt="">
+                  <img *ngIf="crew?.image" src="{{crew?.image}}" alt="">
+                </ng-container>
+              </span>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" class="th"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="tr"></tr>
+
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                      showFirstLastButtons
+                      aria-label="Select page of periodic elements">
+        </mat-paginator>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,83 @@
+<!-- <div class="container">
+  <div class="buttons">
+    <div>
+      <button [class]='position ?"btn1":"btn2"' (click)="changePosition()">All Routes <span class="dropdown"><i class="fa-solid fa-caret-down"></i></span></button>
+      <button [class]='position ?"btn3":"btn4"' (click)="changePosition()">Network Coverage</button>
+    </div>
+    <div>
+      <button class="btn5" (click)="addRouteDialog()"><span class="plusicon"> <i class="fa-solid fa-plus"></i> </span> Add Routes</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div>
+      <div class="data" *ngFor="let routedata of routes">
+        <span class="checkIcon">
+          <i class="fa-solid fa-circle-check"></i>
+        </span>
+        <p class="data-text">
+          <span class="icon"> <i class="fa fa-location-dot"></i> </span>
+          {{ routedata.name }}
+        </p>
+        <p class="data-address">
+          <span class="icon"> <i class="fa fa-location-dot"></i> </span>
+          {{ routedata.status }} * 12km apart
+        </p>
+      </div>
+    </div>
+
+    <div class="map-image">
+      <img src="assets/images/router-map.png" alt="map image" />
+    </div>
+  </div>
+</div> -->
+
+<div class="row m-0 p-0 px-lg-5 px-md-3 pt-4 container">
+  <div class="col-12">
+    <div class="row mt-0 p-0 d-flex justify-content-md-between">
+      <div class="col-12 col-md-6 col-xl-4">
+        <div class="row m-0 d-flex">
+          <button mat-flat-button class="route-btn">
+            <span> All Routes </span>
+            <span class="add-route-Icon"><i class="fa-solid fa-caret-down"></i></span>
+          </button>
+
+          <button mat-flat-button class="network-btn">
+            <span> Network Coverage </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-end">
+        <button mat-flat-button class="add-route-btn" (click)="addRouteDialog()">
+          <svg-icon src="/assets/icons/plus.svg" class="svgIcon"></svg-icon>
+          <span> Add Route </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 mt-4 p-0">
+    <div class="row mt-2 p-0 d-flex justify-content-md-between">
+      <div class="col-sm-12 col-md-4">
+        <div class="data" *ngFor="let routedata of routes">
+          <span class="checkIcon">
+            <i class="fa-solid fa-circle-check"></i>
+          </span>
+          <p class="route-text">
+            <span class="icon"> <i class="fa fa-location-dot"></i> </span>
+            {{ routedata.name }}
+          </p>
+          <p class="route-address">
+            <span class="icon"> <i class="fa fa-location-dot"></i> </span>
+            {{ routedata.status }} * 12km apart
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-8 col-sm-12">
+        <img src="assets/images/router-map.png" alt="map image" class="map-img" />
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="page_body">
+  <div class="head_buttons">
+    <div class="head_buttons_left">
+      <button class="head_buttons_left_boat" (click)="goto('/routes')">Routes</button>
+      <button class="head_buttons_left_crew" (click)="goto('/networks')">Networks</button>
+    </div>
+
+    <div class="head_buttons_right">
+      <button (click)="createRouteDialog()">
+        <svg-icon src="/assets/icons/plus.svg" class="me-1"></svg-icon>
+        Add New Route
+      </button>
+    </div>
+  </div>
+
+  <div class="boat_title">
+    <h3>All Routes</h3>
+  </div>
+
+  <div class="routes">
+
+    <div class="routes_container">
+      <div class="routes_container_card" *ngFor="let route of routes">
+        <div class="card-contents">
+          <!-- <img src="/assets/svg/boat-img.svg" alt=""> -->
+          <div class="ms-3">
+            <p class="card-title mb-0 mt-2">{{route.name}}</p>
+            <p class="card-subtitle">
+              <svg-icon src="/assets/icons/location-pointer.svg"></svg-icon>
+              {{route?.description }}
+
+              <!-- <br>
+              <svg-icon src="/assets/icons/dot.svg"></svg-icon>
+              {{route.status}} -->
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="routes_map">
+
+    </div>
+  </div>
+
+
+
+
+</div>

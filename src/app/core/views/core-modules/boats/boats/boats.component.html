@@ -1,0 +1,159 @@
+<div class="page_body">
+    <div class="head_buttons">
+        <div class="head_buttons_left">
+            <button class="head_buttons_left_boat" (click)="goto('/boats')">Boats</button>
+            <button class="head_buttons_left_crew" (click)="goto('/crew-members')">Crew Members</button>
+        </div>
+
+        <div class="head_buttons_right">
+            <button (click)="createBoatDialog()">
+        <svg-icon src="/assets/icons/plus.svg" class="me-1"></svg-icon>
+         Add New Boat
+      </button>
+        </div>
+    </div>
+
+    <div class="boat_title">
+        <h3>All Boats</h3>
+    </div>
+
+    <div class="boats_container">
+        <div class="boats_container_card" *ngFor="let boat of boats">
+            <div class="card-contents mt-2 mb-2 " [routerLink]="[''+boat.vesselId]">
+                <img src="/assets/svg/boat-img.svg" alt="">
+                <div class="ms-3">
+                    <p class="card-title mb-0 mt-2">{{boat.name}}</p>
+                    <p class="card-subtitle">
+                        <svg-icon src="/assets/icons/location-pointer.svg"></svg-icon>
+                        {{boat.referenceNumber}} <br>
+                        <svg-icon src="/assets/icons/dot.svg"></svg-icon>
+                        {{boat.speed}}km/hr
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="top-page">
+  <div class="page-title">
+    <p>Boats/Vessels Management</p>
+  </div>
+
+  <div class="add-btn">
+    <button mat-stroked-button color="primary" (click)="createBoatDialog()">
+      <span>Add New Boat</span>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div> -->
+
+<!-- <div class="row m-0 d-flex">
+  <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 ">
+    <div class="boats">
+      <div class="boats_list">
+        <mat-card style="padding: 2rem 1rem;">
+          <div class="boats_list_boat">
+            <mat-card *ngFor="let boat of boats" style="cursor:pointer;" (click)="getBoatInfo(boat.vesselId)">
+              <img style="height:130px" matCardImage src="assets/images/boat@2x.png">
+              <mat-card-content>
+                <p style="margin: 0"><b>{{boat.name | titlecase}}</b></p>
+                <p>{{boat.referenceNumber}}</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
+    <div class="boats_details mt-3">
+      <mat-card style="min-height: 100vh;">
+        <div class="boat_details" >
+          <p class="detail_title" *ngIf="boatDetails">Boat Details</p>
+          <mat-card class="boats_details_card" *ngFor="let detail of boatDetails">
+            <div class="boats_details_img_container">
+              <img class="boats_details_card_img" src="{{detail.image != null ? detail.image : '' }}" alt="Boat" srcset="">
+            </div>
+
+            <div class="boats_details_card_texts">
+              <div class="boats_details_card_texts_header">
+                <div class="boats_details_card_texts_header_left">
+                  <p style="margin: 0;"> <b>{{detail.name}} {{detail.referenceNumber}}</b></p>
+                  <small><b>Boat Information</b></small>
+                </div>
+                <div class="boats_details_card_texts_header_right mb-0">
+                  <button mat-mini-fab><mat-icon>home</mat-icon></button>
+                        <button mat-mini-fab><mat-icon>filter_list</mat-icon></button>
+                </div>
+              </div>
+
+              <div class="boats_details_card_texts_body">
+                <div class="boats_details_card_texts_body_item">
+                  <p>Speed</p>
+                  <span>{{detail.speed}}</span>
+                </div>
+                <div class="boats_details_card_texts_body_item">
+                  <p>Year of Built</p>
+                  <span>{{detail.yearOfBuilt}}</span>
+                </div>
+                <div class="boats_details_card_texts_body_item">
+                  <p>Tonnage</p>
+                  <span>{{detail.tonnage}}</span>
+                </div>
+                <div class="boats_details_card_texts_body_item">
+                  <p>Length (m)</p>
+                  <span>{{detail.length}}</span>
+                </div>
+                <div class="boats_details_card_texts_body_item">
+                  <p>Width (m)</p>
+                  <span>{{detail.width}}</span>
+                </div>
+                <div class="boats_details_card_texts_body_item">
+                  <p>Draft (m)</p>
+                  <span>{{detail.draft}}</span>
+                </div>
+                <div class="boats_details_card_texts_body_item">
+                  <p>Type</p>
+                  <span>{{detail.type}}</span>
+                </div>
+                <div class="boats_details_card_texts_body_item">
+                  <p>Passenger Cap</p>
+                  <span>{{detail.capacity}}</span>
+                </div>
+              </div>
+
+            </div>
+          </mat-card>
+        </div>
+
+        <div class="route_destination">
+          <p class="detail_title">Route & Destination</p>
+          <mat-card style="height: 200px;">
+
+          </mat-card>
+        </div>
+
+        <div class="crew_members">
+          <p class="detail_title">Crew Members</p>
+          <mat-card style="height: 150px;">
+
+          </mat-card>
+        </div>
+
+      </mat-card>
+    </div>
+  </div>
+</div> -->

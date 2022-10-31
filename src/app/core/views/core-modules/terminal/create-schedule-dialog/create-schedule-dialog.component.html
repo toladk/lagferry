@@ -1,0 +1,83 @@
+<!-- Close Modal Icon -->
+<div class="d-flex justify-content-end">
+  <svg-icon src="/assets/icons/close-modal-icon.svg" class="close-dialog-svg" (click)="closeDialog()"></svg-icon>
+</div>
+
+<img src="/assets/images/create-terminal-dialog.png" alt="" class="terminal-img">
+<div class="row m-0 py-4 px-lg-5">
+  <div class="col-12 ">
+    <h1 mat-dialog-title class="ps-2">{{ description }} Schedule</h1>
+  </div>
+
+  <div class="">
+    <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
+      <div class="row m-0 pb-2">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="mb-4">
+            <label for="departure" class="form-label">Departure</label>
+            <select class="form-select" aria-label="departure" formControlName="startTerminal" id="departure">
+              <option value="" selected>Select Departure</option>
+              <option *ngFor="let item of terminalList" [value]="item" >{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 m-0">
+          <div class="mb-3">
+            <label for="destination" class="form-label">Destination</label>
+            <select class="form-select" aria-label="destination" formControlName="endTerminal" id="destination">
+              <option value="" selected>Select Destination</option>
+              <option *ngFor="let item of terminalList" [value]="item" >{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="mb-3">
+            <label for="route" class="form-label">Route</label>
+            <select class="form-select" aria-label="route" formControlName="route" id="route">
+              <option value="" selected>Select Route</option>
+              <option *ngFor="let item of routeList" [value]="item" >{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <input type="time" class="form-control" formControlName="scheduleTime" id="time" placeholder="Set Time">
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="mb-3">
+            <label for="vessel" class="form-label">Vessel</label>
+            <select class="form-select" aria-label="vessel" formControlName="vessel" id="vessel">
+              <option value="" selected>Select Vessel</option>
+              <option *ngFor="let item of vesselList" [value]="item" >{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" formControlName="scheduleDate" id="date" placeholder="Set Date">
+          </div>
+        </div>
+      </div>
+
+      <div class=" row d-flex justify-content-center">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <button mat-flat-button type="submit" (click)="onSubmit()">
+            <span>Publish</span>
+          </button>
+        </div>
+      </div>
+    </form>
+
+
+  </div>
+
+
+</div>

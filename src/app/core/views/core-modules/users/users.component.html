@@ -1,0 +1,128 @@
+<div class="user-page">
+    <div class="top-page">
+        <div class="page-title">
+            <p>All users</p>
+        </div>
+
+        <div class="add-btn">
+            <button (click)="creatUserDialog()">
+       + Add New User
+        <!-- <mat-icon>add</mat-icon> -->
+      </button>
+        </div>
+    </div>
+
+
+    <div class="users_container">
+        <div class="users_container_card" *ngFor="let user of users">
+            <div class="card-contents">
+                <div class="card-contents-left">
+                    <div class="card_initials">
+                        {{user.firstname.charAt(0) | uppercase }}{{user.lastname.charAt(0) | uppercase}}
+                    </div>
+
+                    <div class="ms-3">
+                        <p class="card-title mb-0 mt-2">
+                            {{ user.firstname | titlecase }} {{ " " }}{{ user.lastname | titlecase}}
+                        </p>
+                        <div class="card-subtitle mt-1">
+                            <div class="mb-1">
+                                {{ user.email }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="access-details">
+                    <div class="more">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item *ngIf="!user.enabled" (click)="activateUser(user)">
+                <mat-icon>lock_open</mat-icon>
+                <span>Enable</span>
+              </button>
+                            <button *ngIf="user.enabled" mat-menu-item (click)="deactivateUser(user)">
+                <mat-icon>lock</mat-icon>
+                <span>Disable</span>
+              </button>
+                            <button mat-menu-item>
+                <mat-icon>password</mat-icon>
+                <span>Reset Password</span>
+              </button>
+                            <button mat-menu-item>
+                <mat-icon>event</mat-icon>
+                <span>Activity log</span>
+              </button>
+                            <button mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>Remove</span>
+              </button>
+                        </mat-menu>
+                    </div>
+                    <div class="previlage">
+                        <svg-icon *ngIf="user.enabled" src="assets/icons/unlocked-key.svg" [applyClass]="true" [svgClass]="'unlocked'">
+                        </svg-icon>
+                        <svg-icon *ngIf="!user.enabled" src="assets/icons/locked-key.svg" [applyClass]="true" [svgClass]="'unlocked'">
+                        </svg-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="users-content">
+    <div class="user" *ngFor="let user of users">
+      <div class="user-details">
+        <img src="assets/images/no-image.png" alt="user" />
+        <div class="details">
+          <h6 class="username">
+            {{ user.firstname }} {{ " " }}{{ user.lastname }}
+          </h6>
+          <p class="email">{{ user.email }}</p>
+          <p class="phone">{{ user.phonenumber }}</p>
+          <h6 class="department">ict</h6>
+        </div>
+      </div>
+      <div class="access-details">
+        <div class="more">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngIf="!user.enabled" (click)="activateUser(user)">
+              <mat-icon>lock_open</mat-icon>
+              <span>Enable</span>
+            </button>
+            <button *ngIf="user.enabled" mat-menu-item (click)="deactivateUser(user)">
+              <mat-icon>lock</mat-icon>
+              <span>Disable</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>password</mat-icon>
+              <span>Reset Password</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>event</mat-icon>
+              <span>Activity log</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>delete</mat-icon>
+              <span>Remove</span>
+            </button>
+          </mat-menu>
+        </div>
+        <div class="previlage">
+          <svg-icon *ngIf="user.enabled" src="assets/icons/unlocked-key.svg" [applyClass]="true"
+            [svgClass]="'unlocked'">
+          </svg-icon>
+          <svg-icon *ngIf="!user.enabled" src="assets/icons/locked-key.svg" [applyClass]="true" [svgClass]="'unlocked'">
+          </svg-icon>
+        </div>
+      </div>
+    </div>
+
+  </div> -->
+
+
+</div>

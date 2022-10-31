@@ -1,0 +1,111 @@
+<div>
+  <!-- <div class="avatar">
+    <img src="assets/images/no-image.png" alt="user" />
+  </div> -->
+  <div>
+    <form [formGroup]="createForm" (ngSubmit)="submit()">
+
+      <div class="fieldset ">
+        <mat-form-field appearance="standard">
+          <mat-label> Boat Name</mat-label>
+          <input matInput formControlName="name" required />
+          <mat-error *ngIf="createForm.controls['name'].invalid">
+            <small>Boat Name is required</small>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+          <mat-label> Reference Number</mat-label>
+          <input matInput formControlName="referenceNumber" required />
+          <mat-error *ngIf="createForm.controls['referenceNumber'].invalid">
+            <small>Reference Number is required</small>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+          <mat-label> Boat Type </mat-label>
+          <mat-select formControlName="type" required >
+            <mat-option *ngFor="let boat of boatTypes" [value]="boat">
+              {{boat | titlecase}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+          <mat-label> Built Year</mat-label>
+          <input type="number" matInput formControlName="yearOfBuilt" required />
+          <mat-error *ngIf="createForm.controls['yearOfBuilt'].invalid">
+            <small>Built Year is required</small>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+          <mat-label> Capacity</mat-label>
+          <input type="number" matInput formControlName="capacity" required />
+          <mat-error *ngIf="createForm.controls['capacity'].invalid">
+            <small>Capacity is required</small>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+          <mat-label> Tonnage </mat-label>
+          <input type="number" matInput formControlName="tonnage" required />
+          <mat-error *ngIf="createForm.controls['tonnage'].invalid">
+            <small>Tonnage is required</small>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+          <mat-label> Length (m)</mat-label>
+          <input type="number" matInput formControlName="length" required />
+          <mat-error *ngIf="createForm.controls['length'].invalid">
+            <small>Length is required</small>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+          <mat-label> Width (m)</mat-label>
+          <input type="number" matInput formControlName="width" required />
+          <mat-error *ngIf="createForm.controls['width'].invalid">
+            <small>Width is required</small>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+          <mat-label> Draft (m) </mat-label>
+          <input type="number" matInput formControlName="draft" required />
+          <mat-error *ngIf="createForm.controls['draft'].invalid">
+            <small>Draft is required</small>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+          <mat-label> Speed </mat-label>
+          <input type="number" matInput formControlName="speed" required />
+          <mat-error *ngIf="createForm.controls['speed'].invalid">
+            <small> Speed is required</small>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label> Description</mat-label>
+          <textarea matInput formControlName="description" required></textarea>
+          <mat-error *ngIf="createForm.controls['description'].invalid">
+            <small>Description is required</small>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button-row">
+        <button mat-button class="login-button" type="submit">
+          Add Boat
+          <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+

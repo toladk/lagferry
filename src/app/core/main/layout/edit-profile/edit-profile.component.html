@@ -1,0 +1,38 @@
+<div>
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label> First Name</mat-label>
+          <input matInput formControlName="firstname" required />
+          <mat-error *ngIf="updateForm.controls['firstname'].invalid">
+            <small>First Name is required</small>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label> Last Name</mat-label>
+          <input matInput formControlName="lastname" required />
+          <mat-error *ngIf="updateForm.controls['lastname'].invalid">
+            <small>Last Name is required</small>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Enter your email</mat-label>
+          <input matInput placeholder="test@example.com" formControlName="email">
+        </mat-form-field>
+      </div>
+
+      <div class="button-row">
+        <button mat-button class="update-button" type="submit">
+          Update
+          <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
+        </button>
+      </div>
+    </form>
+</div>
+

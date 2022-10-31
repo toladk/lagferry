@@ -1,0 +1,53 @@
+<div class="map-page">
+  <div class="map-div">
+    <!-- map -->
+    <div #mapContainer id="map"></div>
+
+    <!-- custom map controll layers -->
+    <div class="map_controls">
+      <!-- <span>
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+          <mat-icon>layers</mat-icon>
+        </button>
+      </span>
+      <span>
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+          <mat-icon>transfer_within_a_station</mat-icon>
+        </button>
+      </span> -->
+
+      <span>
+        <button class="map_controls_btn" aria-label="Layers">
+          <mat-icon>layers</mat-icon>
+        </button>
+      </span>
+      <span>
+        <button class="map_controls_btn" aria-label="Terminals" (click)="getTerminalLayer($event)">
+          <mat-icon>anchor</mat-icon>
+        </button>
+      </span>
+      <span>
+        <button class="map_controls_btn" aria-label="Boats">
+          <mat-icon>directions_boat</mat-icon>
+        </button>
+      </span>
+      <span>
+        <button class="map_controls_btn" aria-label="Camera">
+          <mat-icon>local_see</mat-icon>
+        </button>
+      </span>
+
+      <span>
+        <button class="map_controls_btn" aria-label="Locate me">
+          <mat-icon>my_location</mat-icon>
+        </button>
+      </span>
+    </div>
+
+    <!-- Map loader -->
+     <div *ngIf="isLoadingLayer" class="loader-div">
+        <img src="assets/gifs/layer.gif" alt="layer loader" srcset="">
+     </div>
+
+  </div>
+</div>

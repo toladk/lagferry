@@ -1,0 +1,171 @@
+.profilebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 2rem 0 1.5rem;
+  z-index: 9;
+  width: 18rem;
+  background: #fff;
+  transition: all 1.4s ease;
+  box-shadow: 0px 4px 10px rgb(79 79 79 / 7%);
+  &_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_icon {
+      margin-right: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.3rem;
+      height: 1.3rem;
+      cursor: pointer;
+    }
+  }
+  &_mid {
+    margin-top: 0.5rem;
+    padding: 1.2rem 0;
+    border-bottom: 0.6px solid #f4f4f4;
+    &_profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      &_img {
+        width: 7rem;
+        height: 7rem;
+        border-radius: 50%;
+        box-shadow: 0px 4px 10px rgb(79 79 79 / 7%);
+      }
+      &_name {
+        font-size: 1rem;
+        // font-weight: bold;
+        margin-top: 0.5rem;
+      }
+      &_pos {
+        color: #9b9b9b;
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.dashboard_content {
+  padding: 2rem 1rem;
+  &_counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    &_card {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      width: 240px;
+      height: 110px;
+      background: #ffffff;
+      border: 0.5px solid #dddddd;
+      box-shadow: 0px 4px 8px rgba(75, 75, 75, 0.05);
+      border-radius: 4px;
+      &_icon {
+        // width: 40px;
+        // height: 40px;
+        // background: rgba(221, 243, 255, 0.5);
+        // border: 0.05px solid #00a6ff;
+        // border-radius: 50%;
+      }
+      &_text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+        gap: 0.3rem;
+        &_count {
+          // font-family: "Montserrat";
+          // font-style: normal;
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 29px;
+          color: #4b4b4b;
+        }
+        &_field {
+          // font-family: 'Montserrat';
+          // font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 13px;
+          color: #4b4b4b;
+        }
+      }
+    }
+  }
+}
+
+.analytics {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #4b4b4b;
+}
+
+.charts {
+  &_line {
+    height: 417px;
+    background: #ffffff;
+    border: 0.5px solid #dddddd;
+    box-shadow: 0px 4px 8px rgba(75, 75, 75, 0.05);
+    border-radius: 6px;
+  }
+  &_second {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    &_pie {
+      height: 354px;
+      width: 39%;
+      background: #ffffff;
+      box-shadow: 0px 2px 8px rgba(75, 75, 75, 0.05);
+      border: 0.5px solid #dddddd;
+      border-radius: 6px;
+    }
+    &_bar {
+      height: 354px;
+      width: 59.5%;
+      background: #ffffff;
+      border: 0.5px solid #dddddd;
+      box-shadow: 0px 2px 8px rgba(75, 75, 75, 0.05);
+      border-radius: 6px;
+    }
+  }
+}
+
+#linechartdiv{
+  width: 100%;
+  height: 400px;
+}
+
+#piechartdiv, #barchartdiv {
+  width: 100%;
+  height: 344px;
+}
+
+// .nav-icon {
+//   color: #0097f1;
+//   path:first-child {
+//     stroke: #0097f1;
+//     fill: #fff;
+//   }
+//   path:nth-child(2) {
+//     stroke: #0097f1;
+//     fill: #fff;
+//   }
+// }

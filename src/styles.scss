@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+img {
+  object-fit: cover;
+}
+.notification-error {
+  background: #bc0000 !important;
+  color: #fefefe !important;
+}
+.notification-warning {
+  background: #eebe00 !important;
+  color: #fefefe !important;
+}
+.notification-success {
+  background: #0ed100 !important;
+  color: #fefefe !important;
+}
+

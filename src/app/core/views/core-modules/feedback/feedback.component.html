@@ -1,0 +1,73 @@
+  <div class="row m-0 p-0 px-lg-5 px-md-3 pt-4">
+    <div class="col-12">
+      <div class="row mt-0 p-0 d-flex justify-content-md-between">
+
+        <div class="col-12 col-sm-12 col-md-6 col-xl-4">
+          <div class="row m-0 d-flex">
+            <button mat-flat-button class="report-btn">
+              <span>Reports</span>
+            </button>
+
+            <button mat-flat-button class="enquiries-btn">
+              <span>All Enquiries</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-end">
+          <button mat-flat-button class="date-btn">
+            <span class="me-2">Date Modified</span>
+            <svg-icon src="/assets/icons/arrow-down.svg"></svg-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="col-12 mt-4 p-0 ">
+      <div class="row m-0 p-0">
+        <div class="col-12 col-sm-12 col col-md-6 col-xl-4" *ngFor="let report of reports">
+            <figure class="card-content">
+              <div class="card-header">
+                <div class="d-flex">
+                  <p class="profile-icon">
+
+                    {{ report?.reporter?.split(" ")[0][0] }}
+                    <ng-container *ngIf="report?.reporter?.split(' ')[1]" >
+                      {{ report?.reporter?.split(" ")[1][0]}}
+                    </ng-container>
+                  </p>
+
+                  <div class="profile">
+                    <p>
+                      <span class="profile-name">{{report?.reporter}}</span>
+                      <span class="profile-email">
+                        {{report?.email}}
+                        <span class="status">
+                          <svg-icon src="/assets/icons/dot.svg"></svg-icon>
+                          {{report?.status}}
+                        </span>
+                      </span>
+                      <span class="profile-last-seen">{{report?.lastModifiedDate}}</span>
+                    </p>
+                  </div>
+                </div>
+                <input type="checkbox" >
+              </div>
+
+              <blockquote class="card-article">
+                {{report?.description}}
+              </blockquote>
+
+              <figcaption class="card-caption">
+                <p>
+                  <span>Assigned to</span>
+                  <span class="name">{{report?.reporter}}</span>
+                </p>
+              </figcaption>
+
+            </figure>
+        </div>
+      </div>
+    </div>
+  </div>
