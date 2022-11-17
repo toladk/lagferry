@@ -1,1 +1,47 @@
-<p>add-route-modal works!</p>
+<!-- Close Modal Icon -->
+<div class="d-flex justify-content-end">
+    <svg-icon src="/assets/icons/close-modal-icon.svg" class="close-dialog-svg" (click)="closeDialog()"></svg-icon>
+</div>
+
+<!-- Upload Image -->
+<!-- <div class="import-img-background">
+  <svg-icon src="/assets/icons/add-photo.svg" (click)="addPhoto.click()" class="svg"></svg-icon>
+  <input type="file" class="file-input" (change)="readImage($event);" accept=".jpg, .png" name="image" #addPhoto>
+  <img *ngIf="!imageURL" src="/assets/images/entypo_image-inverted.png" alt="" class="img-frame">
+  <img *ngIf="imageURL && imageURL !== ''" [src]="imageURL" alt="" class="uploaded-img">
+</div> -->
+
+<!-- Form -->
+<div class="row m-0 py-4 px-lg-5">
+    <div class="col-12">
+        <h1 mat-dialog-title class="ps-2">Add Route</h1>
+    </div>
+
+    <div class="">
+        <form (ngSubmit)="onSubmitAddRoute()">
+            <div class="row m-0 pb-2 d-flex align-items-center">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <label for="name" class="form-label">Upload</label>
+                    <div class="mb-4 input-card">
+                        <svg-icon src="/assets/icons/upload_icon.svg" (click)="uploadZip.click()" class="text-center"></svg-icon>
+                        <p>
+                            <span (click)="uploadZip.click()" *ngIf="!zipFileName">Upload zip file here </span>
+                            <span *ngIf="zipFileName">{{zipFileName}}</span>
+                        </p>
+                        <input type="file" class="file-input" accept=".zip" (change)="readZipFile($event);" #uploadZip>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" row d-flex justify-content-center">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <button mat-flat-button type="submit" style="width: 100%;">
+                  <span class="fw-normal">Add Route</span><mat-spinner *ngIf="loading" class="mat-progress-spinner" style="margin-left: 7px;"></mat-spinner>
+                </button>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</div>

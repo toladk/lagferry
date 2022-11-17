@@ -1,1 +1,103 @@
-<p>header works!</p>
+<!-- <div class="header">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="">
+                    Boat Management
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="">
+                    Boat Management
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="header">
+    <div class="row px-4 py-3">
+        <div class="col-lg-6" style="padding-left: 0px;">
+            <p class="fs-5 fw-semibold mt-2">{{ topTitle | async }}</p>
+        </div>
+        <div class="col-lg-6">
+            <div class="d-flex" style="float: right;">
+                <div class="me-2 mt-2">
+                    <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                          d="M8 20C7.46957 20 6.96086 19.7893 6.58579 19.4142C6.21071 19.0391 6 18.5304 6 18H10C10 18.5304 9.78929 19.0391 9.41421 19.4142C9.03914 19.7893 8.53043 20 8 20ZM16 17H0V15L2 14V8.5C1.94732 7.08912 2.26594 5.68913 2.924 4.44C3.24784 3.86727 3.68943 3.36971 4.21965 2.98015C4.74987 2.59059 5.35666 2.31788 6 2.18V4.16711e-06H9.646C9.01249 0.708013 8.61931 1.59836 8.52279 2.54351C8.42627 3.48865 8.63137 4.4401 9.10869 5.26155C9.58602 6.08299 10.3111 6.73229 11.18 7.11643C12.049 7.50057 13.0172 7.59983 13.946 7.4C13.981 7.757 13.998 8.127 13.998 8.5V14L15.998 15V17H16ZM13 6C12.606 5.99935 12.2161 5.9211 11.8523 5.76973C11.4886 5.61836 11.1583 5.39683 10.8801 5.11779C10.602 4.83875 10.3816 4.50766 10.2314 4.14344C10.0813 3.77921 10.0043 3.38897 10.005 2.995C10.0057 2.60104 10.0839 2.21106 10.2353 1.84733C10.3866 1.48361 10.6082 1.15326 10.8872 0.875148C11.1663 0.597037 11.4973 0.37661 11.8616 0.226452C12.2258 0.0762947 12.616 -0.000652448 13.01 4.16711e-06C13.8056 0.00133026 14.5682 0.318673 15.1299 0.882219C15.6915 1.44577 16.0063 2.20935 16.005 3.005C16.0037 3.80065 15.6863 4.56319 15.1228 5.12486C14.5592 5.68653 13.7956 6.00133 13 6Z"
+                          fill="#000066" />
+                  </svg>
+                </div>
+                <div class="dropdown">
+                    <div class="d-flex" type="button" data-bs-toggle="dropdown" aria-expanded="true" aria-haspopup="true">
+                        <div class="me-2 ">
+                            <img src="assets/images/img.jpg" alt="" style="width: 40px; height: 40px; border-radius: 50%;">
+                        </div>
+                        <svg style="margin-top: 15px;" width="12" height="10" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                              d="M0.0880462 0.768965C0.144439 0.703672 0.220914 0.666992 0.300654 0.666992C0.380393 0.666992 0.456868 0.703672 0.513261 0.768965L2.00182 2.49297L3.49037 0.768965C3.54709 0.705522 3.62305 0.670417 3.7019 0.671211C3.78074 0.672004 3.85617 0.708633 3.91192 0.773208C3.96768 0.837783 3.9993 0.925137 3.99999 1.01646C4.00067 1.10777 3.97036 1.19575 3.91558 1.26144L2.21442 3.23169C2.15803 3.29698 2.08156 3.33366 2.00182 3.33366C1.92208 3.33366 1.8456 3.29698 1.78921 3.23169L0.0880462 1.26144C0.0316702 1.19613 0 1.10756 0 1.0152C0 0.92285 0.0316702 0.834278 0.0880462 0.768965V0.768965Z"
+                              fill="black" />
+                      </svg>
+                    </div>
+                    <div class="dropdown-menu" style="margin-top: 60px;">
+                        <div class="" style="width: 24rem;">
+                            <div>
+                                <div class="dropdown-card">
+                                    <div style="width: 40%; margin:0 auto;">
+                                        <img src="assets/images/img.jpg" alt="" class="card-img" style="border-radius: 50%; margin-left: 40px;">
+                                        <p style="margin-left: 30px; font-size: 20px;" class="mt-2 fw-semibold">John Doe</p>
+                                        <div class="email-area">
+                                            <div class="d-flex">
+                                                <div class="">
+                                                    <i style="color: #00A6FF; font-size: 12px;" class="fa fa-envelope info-icon" aria-hidden="true"></i>
+                                                </div>
+                                                <p style="font-size: 13px;">johndoe@example.com</p>
+                                            </div>
+                                        </div>
+                                        <div class="email-area">
+                                            <div class="d-flex">
+                                                <div class="">
+                                                    <i style="color: #00A6FF; font-size: 12px;" class="fa fa-phone info-icon" aria-hidden="true"></i>
+                                                </div>
+                                                <p style="font-size: 13px;">08012345678</p>
+                                            </div>
+                                        </div>
+                                        <button style="margin-left: 30px;">
+                                          <div class="email-area">
+                                              <div class="d-flex">
+                                                  <i class="fa fa-edit fa-1x mt-1" style="font-size: 13px;" aria-hidden="true"></i>
+                                                  <p style="margin: 0 0 0 6px; font-size: 13px;">Update</p>
+                                              </div>
+                                          </div>
+                                      </button>
+                                    </div>
+                                    <hr class="mt-4 mb-4">
+                                    <div style="text-align: left; margin: 0 auto; width: 70%;">
+                                        <p class="fw-semibold mb-1" style="margin-top: 20px; font-size: 14px;">Call Lines</p>
+                                        <div class="d-flex justify-content-between" style="margin-bottom: 4px">
+                                            <p class="mt-1 mb-0" style="font-size: 13px;">+234 (090) 234-6575-405</p>
+                                            <div class="">
+                                                <i class="fa fa-trash trash-can" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <p class="mt-1" style="font-size: 13px;">+234 (090) 234-6575-405</p>
+                                            <div class="">
+                                                <i class="fa fa-trash trash-can" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex" style="width: 100%; height: 30px;">
+                                            <input type="text" name="" style="padding: 4px 6px; width: 85%; border: 1px solid rgb(200, 200, 236); background-color: #fdfeff; margin-right: 5px; font-size: 13px;" placeholder="Enter number to update help-line">
+                                            <button style="width:15%; border-radius: 3px; padding: 0; font-size: 12px;">Add</button>
+                                        </div>
+                                        <button class="btnLogout" style="width: 100%; margin: 10px 0 20px 0;" (click)="logout()">LogOut</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

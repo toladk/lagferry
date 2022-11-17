@@ -1,6 +1,6 @@
 <div class="page_body">
 
-    <div class="head_buttons">
+    <div class="head_buttons  mt-5 pt-4">
         <div class="head_buttons_left">
             <svg-icon style="cursor: pointer;" src="/assets/icons/navigation-arrow.svg" [routerLink]="['/boats']"></svg-icon>
             <button class="head_buttons_left_boat" (click)="goto('/boats')">Boats</button>
@@ -25,18 +25,18 @@
         <div class="boat_info col-md-6">
             <div class="mt-3 d-flex">
                 <div class="">
-                    <h3 class="mb-2 fw-bold boat_info_text_header">MF-Akran</h3>
+                    <h3 class="mb-2 fw-bold boat_info_text_header">{{ this.boatDetails?.name }}</h3>
                 </div>
                 <div class="">
-                    <button class="fw-bold btn boat_info_btn_primary"><i class="fa fa-edit fa-1x" style="margin-right: 10px;" aria-hidden="true"></i>Edit</button>
+                    <button class="fw-bold btn boat_info_btn_primary" (click)="editBoatDialog()"><i class="fa fa-edit fa-1x" style="margin-right: 10px;" aria-hidden="true"></i>Edit</button>
                 </div>
             </div>
             <div class="d-flex">
-                <p class="mb-1" style="margin-right: 15px;"><i class="fa fa-server fa-1x" style="margin-right: 5px; color: #00A6FF;" aria-hidden="true"></i>LAG56908765</p>
-                <p class="mb-1"><i class="fa fa-clock fa-1x" style="margin-right: 5px; color: #00A6FF;" aria-hidden="true"></i>25Km/hr</p>
+                <p class="mb-1" style="margin-right: 15px;"><i class="fa fa-server fa-1x" style="margin-right: 5px; color: #00A6FF;" aria-hidden="true"></i>{{ this.boatDetails?.externalId }}</p>
+                <p class="mb-1"><i class="fa fa-clock fa-1x" style="margin-right: 5px; color: #00A6FF;" aria-hidden="true"></i>{{ this.boatDetails?.speed }}Km/hr</p>
             </div>
             <div class="">
-                <p><i class="fa fa-dumbbell fa-1x" style="margin-right: 5px; color: #00A6FF;" aria-hidden="true"></i>25Kg</p>
+                <p><i class="fa fa-dumbbell fa-1x" style="margin-right: 5px; color: #00A6FF;" aria-hidden="true"></i>{{ this.boatDetails?.tonnage }}Kg</p>
             </div>
         </div>
         <div class="boat_info col-md-6">
@@ -101,127 +101,36 @@
                         <p class="" style="font-size: 19px;">Crew Members</p>
                     </div>
                     <div class="col-md-6">
-                        <button class="fw-bold btn crew_btn_primary"><i class="fa fa-add fa-1x" style="margin-right: 10px;" aria-hidden="true"></i>Assign More</button>
+                        <button class="fw-bold btn crew_btn_primary" (click)="assignCrewMemeberDialog()"><i class="fa fa-add fa-1x" style="margin-right: 10px;" aria-hidden="true"></i>Assign More</button>
                     </div>
                 </div>
 
                 <div class="row mt-2 gx-5 gy-4">
-                    <div class="col-md-4">
+                    <div class="col-lg-12" *ngIf="crewMemberList.length === 0">
                         <div class="card crew_card">
-                            <div class="d-flex">
-                                <div class="col-md-3 px-3 py-3">
-                                    <p class="crew_text_initials bg-success text-center mb-0">ER</p>
-                                </div>
-                                <div class="col-md-7 px-2">
-                                    <p class="mb-0 fw-bold" style="font-size: 17px; margin-top: 20px">Elegbede Rianat</p>
-                                    <div class="d-flex mt-1">
-                                        <p class="mb-0">Captain</p>
-                                        <p class="crew_dot mt-2" style="margin-left: 7px; margin-right: 7px"></p>
-                                        <p class="mb-0">Akran</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 px-2 py-2">
-                                    <p class="mb-0 crew_icon_danger" style="float: right;"><i class="fa fa-trash fa-1x text-danger" style="font-size: 12px;" aria-hidden="true"></i></p>
-                                </div>
-                            </div>
+                            <h2 class="mt-4 mb-4 text-center">No crew assigned to vessel yet.. click assign more to assign crew</h2>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card crew_card">
-                            <div class="d-flex">
-                                <div class="col-md-3 px-3 py-3">
-                                    <p class="crew_text_initials bg-danger text-center mb-0">ER</p>
-                                </div>
-                                <div class="col-md-7 px-2">
-                                    <p class="mb-0 fw-bold" style="font-size: 17px; margin-top: 20px">Elegbede Rianat</p>
-                                    <div class="d-flex mt-1">
-                                        <p class="mb-0">Captain</p>
-                                        <p class="crew_dot mt-2" style="margin-left: 7px; margin-right: 7px"></p>
-                                        <p class="mb-0">Akran</p>
+                    <div class="" *ngIf="crewMemberList.length > 0">
+                        <div class="row">
+                            <div class="col-md-4" *ngFor="let list of crewMemberList">
+                                <div class="card crew_card">
+                                    <div class="d-flex">
+                                        <div class="col-md-3 px-3 py-3">
+                                            <p class="crew_text_initials bg-primary text-center mb-0">{{list.firstName.charAt(0)}}{{list.lastName.charAt(0)}}</p>
+                                        </div>
+                                        <div class="col-md-7 px-2">
+                                            <p class="mb-0 fw-bold" style="font-size: 17px; margin-top: 20px">{{ list.firstName }} {{ list.lastName }}</p>
+                                            <div class="d-flex mt-1">
+                                                <p class="mb-0">{{ list.type }}</p>
+                                                <p class="crew_dot mt-2" style="margin-left: 7px; margin-right: 7px"></p>
+                                                <p class="mb-0">{{ list.status }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 px-2 py-2">
+                                            <p class="mb-0 crew_icon_danger" style="float: right;"><i class="fa fa-trash fa-1x text-danger" style="font-size: 12px;" aria-hidden="true"></i></p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2 px-2 py-2">
-                                    <p class="mb-0 crew_icon_danger" style="float: right;"><i class="fa fa-trash fa-1x text-danger" style="font-size: 12px;" aria-hidden="true"></i></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card crew_card">
-                            <div class="d-flex">
-                                <div class="col-md-3 px-3 py-3">
-                                    <p class="crew_text_initials text-center mb-0">ER</p>
-                                </div>
-                                <div class="col-md-7 px-2">
-                                    <p class="mb-0 fw-bold" style="font-size: 17px; margin-top: 20px">Elegbede Rianat</p>
-                                    <div class="d-flex mt-1">
-                                        <p class="mb-0">Captain</p>
-                                        <p class="crew_dot mt-2" style="margin-left: 7px; margin-right: 7px"></p>
-                                        <p class="mb-0">Akran</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 px-2 py-2">
-                                    <p class="mb-0 crew_icon_danger" style="float: right;"><i class="fa fa-trash fa-1x text-danger" style="font-size: 12px;" aria-hidden="true"></i></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card crew_card">
-                            <div class="d-flex">
-                                <div class="col-md-3 px-3 py-3">
-                                    <p class="crew_text_initials text-center mb-0">ER</p>
-                                </div>
-                                <div class="col-md-7 px-2">
-                                    <p class="mb-0 fw-bold" style="font-size: 17px; margin-top: 20px">Elegbede Rianat</p>
-                                    <div class="d-flex mt-1">
-                                        <p class="mb-0">Captain</p>
-                                        <p class="crew_dot mt-2" style="margin-left: 7px; margin-right: 7px"></p>
-                                        <p class="mb-0">Akran</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 px-2 py-2">
-                                    <p class="mb-0 crew_icon_danger" style="float: right;"><i class="fa fa-trash fa-1x text-danger" style="font-size: 12px;" aria-hidden="true"></i></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card crew_card">
-                            <div class="d-flex">
-                                <div class="col-md-3 px-3 py-3">
-                                    <p class="crew_text_initials bg-warning text-center mb-0">ER</p>
-                                </div>
-                                <div class="col-md-7 px-2">
-                                    <p class="mb-0 fw-bold" style="font-size: 17px; margin-top: 20px">Elegbede Rianat</p>
-                                    <div class="d-flex mt-1">
-                                        <p class="mb-0">Captain</p>
-                                        <p class="crew_dot mt-2" style="margin-left: 7px; margin-right: 7px"></p>
-                                        <p class="mb-0">Akran</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 px-2 py-2">
-                                    <p class="mb-0 crew_icon_danger" style="float: right;"><i class="fa fa-trash fa-1x text-danger" style="font-size: 12px;" aria-hidden="true"></i></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card crew_card">
-                            <div class="d-flex">
-                                <div class="col-md-3 px-3 py-3">
-                                    <p class="crew_text_initials bg-info text-center mb-0">ER</p>
-                                </div>
-                                <div class="col-md-7 px-2">
-                                    <p class="mb-0 fw-bold" style="font-size: 17px; margin-top: 20px">Elegbede Rianat</p>
-                                    <div class="d-flex mt-1">
-                                        <p class="mb-0">Captain</p>
-                                        <p class="crew_dot mt-2" style="margin-left: 7px; margin-right: 7px"></p>
-                                        <p class="mb-0">Akran</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 px-2 py-2">
-                                    <p class="mb-0 crew_icon_danger" style="float: right;"><i class="fa fa-trash fa-1x text-danger" style="font-size: 12px;" aria-hidden="true"></i></p>
                                 </div>
                             </div>
                         </div>
@@ -322,14 +231,34 @@
                         <p class="" style="font-size: 19px;">Trackers</p>
                     </div>
                     <div class="col-md-6">
-                        <button class="fw-bold btn trackers_btn_primary"><i class="fa fa-add fa-1x" style="margin-right: 8px;" aria-hidden="true"></i>Add New</button>
+                        <button *ngIf="!boatDetails?.tracker" class="fw-bold btn trackers_btn_primary" (click)="boatTrackerDialog()"><i class="fa fa-add fa-1x" style="margin-right: 8px;" aria-hidden="true"></i>Add New</button>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card trackers_card">
-                            <div class="col-md-12 trackers_inner">
+                            <h3 *ngIf="!boatDetails?.tracker" class="mt-3 text-center">Boat as no tracker. Click add new</h3>
+                            <div class="col-md-12 trackers_inner" *ngIf="boatDetails?.tracker">
+                                <div class="py-2 px-3 pt-3">
+                                    <div class="d-flex">
+                                        <div class="col-md-9">
+                                            <p class="mb-0 fw-bold" style="font-size: 17px;">{{ this.boatDetails?.name }} Tracker</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <p class="mb-0" style="float: right;"><i class="fa fa-check fa-1x text-white trackers_icon_success_small" aria-hidden="true"></i></p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-1">
+                                        <p class="mb-0" style="font-size: 15px;">{{ this.boatDetails?.tracker?.serialNumber }}</p>
+                                        <div class="d-flex mt-2 mb-2">
+                                            <p (click)="deleteTrackerDialog()" class="mb-0 trackers_icon_danger" style="margin-right: 10px;"><i class="fa fa-trash fa-1x text-danger" aria-hidden="true"></i></p>
+                                            <p class="mb-0 trackers_icon_primary"><i class="fa fa-expand fa-1x" style="color: #00A6FF;" aria-hidden="true"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-12 trackers_inner">
                                 <div class="py-2 px-3 pt-3">
                                     <div class="d-flex">
                                         <div class="col-md-9">
@@ -347,26 +276,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12 trackers_inner">
-                                <div class="py-2 px-3 pt-3">
-                                    <div class="d-flex">
-                                        <div class="col-md-9">
-                                            <p class="mb-0 fw-bold" style="font-size: 17px;">MF-Akran Trancker</p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p class="mb-0" style="float: right;"><i class="fa fa-check fa-1x text-white trackers_icon_success_small" aria-hidden="true"></i></p>
-                                        </div>
-                                    </div>
-                                    <div class="mt-1">
-                                        <p class="mb-0" style="font-size: 15px;">GLK-9000987KU</p>
-                                        <div class="d-flex mt-2 mb-2">
-                                            <p class="mb-0 trackers_icon_danger" style="margin-right: 10px;"><i class="fa fa-trash fa-1x text-danger" aria-hidden="true"></i></p>
-                                            <p class="mb-0 trackers_icon_primary"><i class="fa fa-expand fa-1x" style="color: #00A6FF;" aria-hidden="true"></i></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

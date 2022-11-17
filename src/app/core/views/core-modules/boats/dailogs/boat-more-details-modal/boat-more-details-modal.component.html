@@ -3,12 +3,47 @@
     <svg-icon src="/assets/icons/close-modal-icon.svg" class="close-dialog-svg" (click)="closeDialog()"></svg-icon>
 </div>
 
-<div class="row m-1 d-flex justify-content-center align-items-center p-5">
-    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl 8 ">
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <img src="/assets/images/success-trophy.png" alt="">
-            <p class="title">Congrats!</p>
-            <p class="sub-title">Your {{description}} has been successfully {{action}} and <br> published</p>
+<div class="row m-1 p-2">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <h2 class="mt-4">More Details</h2>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="d-flex" style="border-bottom: 1px solid #a7a9aa56;">
+            <div class="iconHolder">
+                <i class="fa fa-calendar fa-1x icon"></i>
+            </div>
+            <div class="" style="margin-left: 22px;">
+                <p class="mb-0 fw-light">Manufacturer Year</p>
+                <p class="mb-3">{{ this.boatDetails?.yearOfBuilt }}</p>
+            </div>
+        </div>
+        <div class="d-flex mt-3" style="border-bottom: 1px solid #a7a9aa56;">
+            <div class="iconHolder">
+                <i class="fa fa-chair fa-1x icon"></i>
+            </div>
+            <div class="" style="margin-left: 22px;">
+                <p class="mb-0 fw-light">Passanger Capacity</p>
+                <p class="mb-3">{{ this.boatDetails?.capacity }} Passengers</p>
+            </div>
+        </div>
+        <div class="d-flex mt-3" style="border-bottom: 1px solid #a7a9aa56;">
+            <div class="iconHolder">
+                <i class="fa fa-ship fa-1x icon"></i>
+            </div>
+            <div class="" style="margin-left: 22px;">
+                <p class="mb-0 fw-light">Width</p>
+                <p class="mb-3">{{ this.boatDetails.width }}cm</p>
+            </div>
+        </div>
+        <div class="d-flex mt-3">
+            <div class="iconHolder">
+                <i class="fa fa-up-down fa-1x icon"></i>
+            </div>
+            <div class="" style="margin-left: 22px;">
+                <p class="mb-0 fw-light">Height</p>
+                <p class="mb-3">{{ this.boatDetails?.length }}cm</p>
+            </div>
         </div>
     </div>
 </div>

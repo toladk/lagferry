@@ -1,0 +1,45 @@
+<!-- Close Modal Icon -->
+<div class="d-flex justify-content-end">
+    <svg-icon src="/assets/icons/close-modal-icon.svg" class="close-dialog-svg" (click)="closeDialog()"></svg-icon>
+</div>
+
+<div class="row m-1 px-5 py-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="text-center mt-4">
+            <i class="fa fa-user fa-1x icon text-center iconHolder"></i>
+        </div>
+        <div class="text-center mt-4">
+            <h2 class="fw-bold" style="color: #4B4B4B;">Assign Crew Member</h2>
+        </div>
+    </div>
+
+    <form [formGroup]="crewForm" (ngSubmit)="onSubmitAddCrew()">
+        <div class="row">
+            <div class="col-12 col-lg-12 col-md-12">
+                <mat-form-field appearance="standard" style="width: 100%;">
+                    <mat-label>Crew Member</mat-label>
+                    <mat-select formControlName="crewMemberId" required>
+                        <mat-option *ngFor="let list of crewMemberList" [value]="list.crewMemberId">
+                            {{list.firstName}} {{ list.lastName}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error>
+                        <span class="text-danger" *ngIf="crewForm.get('crewMemberId')?.errors && (crewForm.get('crewMemberId')?.touched || crewForm.get('crewMemberId')?.dirty)">
+            <span *ngIf="crewForm.get('crewMemberId')?.errors?.['required']">Crew member is required</span>
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class=" row d-flex justify-content-center mt-4 mb-4">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <button mat-flat-button type="submit" [disabled]="!crewForm.valid" style="width: 100%;">
+                <span class="fw-normal">Assign Crew</span><mat-spinner *ngIf="loading" class="mat-progress-spinner" style="margin-left: 7px;"></mat-spinner>
+              </button>
+            </div>
+        </div>
+    </form>
+
+
+
+</div>

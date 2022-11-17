@@ -1,0 +1,78 @@
+// .header {
+//     padding: 25px 27px;
+//     background-color: #ffffff;
+//     width: -webkit-fill-available;
+//     position: fixed;
+//     z-index: 99;
+// }
+.drop-down {
+    margin-top: 4px;
+    height: 18px;
+    padding: 0% 3px 1px;
+}
+
+button {
+    background-color: white;
+}
+
+.header {
+    padding: 0px 23px;
+    background-color: #ffffff;
+    width: -webkit-fill-available;
+    position: fixed;
+    z-index: 99;
+}
+
+.dropdown-card {
+    background-color: #ffffff;
+}
+
+.card-img {
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+    margin-bottom: 6px;
+}
+
+.email-area {
+    margin: 0 auto;
+}
+
+button {
+    background-color: #00A6FF;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 4px;
+}
+
+input::placeholder {
+    font-size: 12px;
+}
+
+input::selection {
+    border: 1px rgb(245, 245, 255);
+}
+
+.trash-can {
+    color: red;
+    font-size: 7px;
+    background: #ecd8d8;
+    padding: 5px 13px;
+    margin: 0 0 0;
+}
+
+.info-icon {
+    margin-right: 10px;
+    background-color: #E0F4FF;
+    border-radius: 50%;
+    padding: 6px 6px;
+}
+
+.btnLogout {
+    background-color: #00A6FF;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 2px;
+}

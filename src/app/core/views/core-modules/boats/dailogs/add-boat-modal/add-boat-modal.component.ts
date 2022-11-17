@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { SuccessModalComponent } from 'src/app/shared/components/success-modal/success-modal.component';
 import { BoatsService } from 'src/app/shared/services/boats/boats.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { CreateUserComponent } from '../../../users/create-user/create-user.component';
@@ -9,49 +10,73 @@ import { CreateUserComponent } from '../../../users/create-user/create-user.comp
   selector: 'app-add-boat-modal',
   templateUrl: './add-boat-modal.component.html',
   styleUrls: ['./add-boat-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddBoatModalComponent implements OnInit {
-  createForm!: FormGroup;
-  boatTypes = ['Double Decker', 'Single Decker'];
+  boatForm!: FormGroup;
+
   loading = false;
+  boatId!: number;
+
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
+    private notify: NotificationService,
+    private dialog: MatDialog,
     private boatService: BoatsService,
-    private notification: NotificationService,
-    public dialogRef: MatDialogRef<CreateUserComponent>
-  ) {}
-
-  ngOnInit(): void {
-    this.createForm = this.fb.group({
+    private dialogRef: MatDialogRef<AddBoatModalComponent>,
+    // @Inject(MAT_DIALOG_DATA),
+  ){
+    this.boatForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       referenceNumber: ['', [Validators.required]],
-      type: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      yearOfBuilt: [null, [Validators.required]],
-      capacity: [null, [Validators.required]],
-      tonnage: [null, [Validators.required]],
-      length: [null, [Validators.required]],
-      width: [null, [Validators.required]],
-      draft: [null, [Validators.required]],
-      speed: [null, [Validators.required]],
+      type: ['', [Validators.required]],
+      width: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      length: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      yearOfBuilt: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      tonnage: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      capacity: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      speed: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      draft: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
   }
 
+  ngOnInit(): void {
+    this.getBoatId();
+  }
 
-  submit(): void {
+  getBoatId(): void{
+    this.boatId = this.boatService.getBoatIdSend();
+  }
+
+  onSubmitAddBoat(){
     this.loading = true;
-    this.boatService.createBoat(this.createForm.value).subscribe({
-      next: (res: any) => {
+    this.boatService.createBoat(this.boatForm.value).subscribe((result: any) => {
+      if(result.status === 0){
         this.loading = false;
-        console.log(res);
-        this.notification.showSuccess(res.message);
-        this.dialogRef.close(res);
-      },
-      error: (err) => {
+        this.closeDialog();
+
+        const dialogConfig = new MatDialogConfig()
+
+        dialogConfig.panelClass = 'success-dialog';
+        dialogConfig.data = {description: result.message, action:'successfully'}
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+
+        this.dialog.open( SuccessModalComponent, dialogConfig)
+
+      } else {
         this.loading = false;
-        this.notification.showError(err);
-      },
-    });
+        this.notify.showError(result.message);
+      }
+    }, error => {
+      this.loading = false;
+      this.notify.showError(error.error.message || error.error.errors[0]);
+    })
+  }
+
+  closeDialog(){
+    this.dialogRef.close();
   }
 }

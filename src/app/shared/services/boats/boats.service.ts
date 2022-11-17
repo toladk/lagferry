@@ -8,6 +8,8 @@ import { Boats } from '../../models/interfaces/boats.interface';
 })
 export class BoatsService {
 
+  vesselIdSend!: number;
+
   constructor(private http: HttpClient) {}
 
   getBoats(){
@@ -15,11 +17,24 @@ export class BoatsService {
   }
 
   getSingleBoat(vesselId: number){
+    this.vesselIdSend = vesselId;
     return this.http.get(environment.apiUrl + `vessel/api/v1/${vesselId}`);
+  }
+
+  getBoatIdSend(){
+    return this.vesselIdSend;
   }
 
   createBoat(payload: Boats) {
     return this.http.post(environment.apiUrl + 'vessel/api/v1', payload);
+  }
+
+  updateBoat(payload: Boats, vesselId: number){
+    return this.http.put(environment.apiUrl + `vessel/api/v1/${vesselId}`, payload);
+  }
+
+  uploadBoatPicture(payload: any, vesselId: number){
+    return this.http.put(environment.apiUrl + `vessel/api/v1/${vesselId}/image`, payload);
   }
 
   activateBoat(boatId: number) {
@@ -28,6 +43,22 @@ export class BoatsService {
 
   deactivateBoat(boatId: number) {
     return this.http.put(environment.apiUrl + `user/api/v1/${boatId}/deactivate`, {});
+  }
+
+  getAllCrewMember(){
+    return this.http.get(environment.apiUrl + 'crew-member/api/v1');
+  }
+
+  addCrewMemberToVessel(payload: any, crewMemberId: number, vesselId: number){
+    return this.http.put(environment.apiUrl + `crew-member/api/v1/${crewMemberId}/vessel/${vesselId}`, payload);
+  }
+
+  addTracker(payload: any) {
+    return this.http.post(environment.apiUrl + 'tracker/api/v1', payload);
+  }
+
+  deleteTracker(trackerId: number){
+    return this.http.delete(environment.apiUrl + `tracker/api/v1/${trackerId}`);
   }
 
 

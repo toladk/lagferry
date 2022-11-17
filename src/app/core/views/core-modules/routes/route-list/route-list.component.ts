@@ -1,5 +1,7 @@
+import { StorageService } from './../../../../../shared/services/storage/storage.service';
+import { UpdateRouteModalComponent } from './../dialogs/update-route-modal/update-route-modal.component';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { RoutesService } from 'src/app/shared/services/routes/routes.service';
@@ -18,11 +20,23 @@ export class RouteListComponent implements OnInit {
     private notify: NotificationService,
     private route : Router,
     private routesService : RoutesService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private storageService: StorageService
   ) { }
 
   ngOnInit(): void {
     this.getRoutes();
+
+    this.setMessagStorage('Route Management');
+
+  }
+
+  setMessagStorage(value: string): void {
+    this.storageService.setStorageItem({
+      key: "title",
+      value,
+      storageArea: "sessionStorage"
+    });
   }
 
   getRoutes() {
@@ -38,19 +52,56 @@ export class RouteListComponent implements OnInit {
     });
   }
 
-  createRouteDialog() {
-    const dialogRef = this.dialog.open(AddRouteModalComponent, { width: '35rem'});
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result.status === 0) {
-        this.getRoutes();
-      }
-    });
-  }
-
-
   goto(route:string){
     this.route.navigateByUrl(route)
-}
+  }
+
+  activateRoute(id: number): void{
+    this.routesService.activateRoute(id).subscribe((result: any) => {
+      if(result.status === 0){
+        this.notify.showSuccess(result.message);
+        this.getRoutes()
+      } else {
+        this.notify.showError(result.message)
+      }
+    }, error => {
+      this.notify.showError(error.error.message || error.error.errrors[0])
+    })
+  }
+
+  deactivateRoute(id: number): void{
+    this.routesService.deactivateRoute(id).subscribe((result: any) => {
+      if(result.status === 0){
+        this.notify.showSuccess(result.message);
+        this.getRoutes()
+      } else {
+        this.notify.showError(result.message)
+      }
+    }, error => {
+      this.notify.showError(error.error.message || error.error.errrors[0])
+    })
+  }
+
+  openCreateRouteModal(): void{
+    const dialogConfig = new MatDialogConfig()
+
+      dialogConfig.panelClass = 'add-route-dialog';
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+
+      this.dialog.open( AddRouteModalComponent, dialogConfig)
+  }
+
+  openUpdateRouteModal(id: number): void{
+    const dialogConfig = new MatDialogConfig()
+
+      dialogConfig.panelClass = 'update-route-dialog';
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+
+      this.dialog.open( UpdateRouteModalComponent, dialogConfig)
+
+    this.routesService.routeId = id;
+  }
 
 }

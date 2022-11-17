@@ -1,4 +1,8 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { CookiesStorageService } from 'src/app/shared/services/cookies-storage.service';
+import { Observable, fromEvent, filter, pluck } from "rxjs";
+import { StorageService } from 'src/app/shared/services/storage/storage.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +11,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  topTitle!: Observable<string>;
+
+  constructor(
+    private route: Router,
+    private cookiesStorage: CookiesStorageService,
+    private storageService: StorageService
+  ) { }
 
   ngOnInit(): void {
+    this.topTitle = this.storageService.storageChange$.pipe(
+      filter(({ storageArea }) => storageArea === "sessionStorage"),
+      filter(({ key }) => key === "title"),
+      pluck("value")
+    );
+
+    this.setMessagStorage(sessionStorage.getItem('title')!);
+
+  }
+
+  setMessagStorage(value: string): void {
+    this.storageService.setStorageItem({
+      key: "title",
+      value,
+      storageArea: "sessionStorage"
+    });
+  }
+
+  logout(): void{
+    this.cookiesStorage.clearStorage()
+    this.route.navigateByUrl('/login')
+    window.location.reload();
   }
 
 }

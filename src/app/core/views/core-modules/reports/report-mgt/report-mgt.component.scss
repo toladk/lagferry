@@ -1,0 +1,115 @@
+.page_body {
+  padding: 2rem 2rem 0rem;
+
+  .head_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &_left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 3rem;
+      button {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        padding: 10px 24px;
+        border-radius: 1e13px;
+        border: 0.2px solid #dddddd;
+      }
+      &_boat {
+        color: #ffffff;
+        background: #000066;
+      }
+      &_crew {
+        color: #000066;
+        background: #ffffff;
+      }
+    }
+    &_right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      button {
+        color: #ffffff;
+        padding: 8px 16px;
+        background: #00a6ff;
+        // border-radius: 1e13px;
+        border: 0.2px solid #dddddd;
+      }
+    }
+  }
+
+  .page_title h3 {
+    margin-top: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #4b4b4b;
+  }
+}
+
+.reports_container {
+  height: 77.5vh;
+  overflow-x:hidden;
+  overflow-y:auto;
+
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  &_card {
+    .card-contents {
+      padding: 1rem;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      width: 100% !important;
+      background: #ffffff;
+      border: 0.5px solid #dddddd81;
+      box-shadow: 0px 4px 8px rgb(75 75 75 / 20%);
+      border-radius: 4px;
+      &_header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &_icon{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 50px;
+          height: 50px;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 20px;
+          color: #ffffff;
+          background-color: #000066;
+          border-radius: 50%;
+        }
+        &_text{
+          display: flex;
+          flex-direction: column;
+          width: 70%;
+          &_email{
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 15px;
+            color: #4b4b4b;
+          }
+          &_reporter{
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+          }
+        }
+        &_action{
+          width: 10%;
+        }
+      }
+    }
+  }
+}

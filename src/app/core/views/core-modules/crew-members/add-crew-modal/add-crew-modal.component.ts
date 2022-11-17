@@ -1,3 +1,4 @@
+import { BoatsService } from 'src/app/shared/services/boats/boats.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -14,11 +15,13 @@ export class AddCrewModalComponent implements OnInit {
   createForm!: FormGroup;
   crewTypes = ['CAPTAIN', 'DECKHAND']
   loading = false;
+  boatList!: any[];
 
   constructor(
     private fb: FormBuilder,
     private userService: UsersService,
     private notification: NotificationService,
+    private boatService: BoatsService,
     public dialogRef: MatDialogRef<CreateUserComponent>
   ) {}
 
@@ -29,7 +32,21 @@ export class AddCrewModalComponent implements OnInit {
       type: ['DECKHAND', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: [ '' ,[Validators.required]],
+      vesselId: [ '' ,[Validators.required]],
     });
+
+    this.getBoats();
+
+  }
+
+  getBoats(): void{
+    this.boatService.getBoats().subscribe((result: any) => {
+      if(result.status === 0){
+        this.boatList = result.data;
+      }
+    }, error => {
+      this.notification.showError(error.error.message || error.error.errors[0]);
+    })
   }
 
   getErrorMessage() {

@@ -1,6 +1,7 @@
+import { StorageService } from './../../../../../shared/services/storage/storage.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Users } from 'src/app/shared/models';
 import { Boats } from 'src/app/shared/models/interfaces/boats.interface';
 import { BoatsService } from 'src/app/shared/services/boats/boats.service';
@@ -32,11 +33,26 @@ export class BoatsComponent implements OnInit {
     private boatsService: BoatsService,
     private notify: NotificationService,
     private route : Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private storageService: StorageService
   ) {}
 
   ngOnInit(): void {
+
+    sessionStorage.setItem('title', 'Boat Management');
+
     this.getBoats();
+
+    this.setMessagStorage('Boat Management');
+
+  }
+
+  setMessagStorage(value: string): void {
+    this.storageService.setStorageItem({
+      key: "title",
+      value,
+      storageArea: "sessionStorage"
+    });
   }
 
   getBoats() {
@@ -53,13 +69,13 @@ export class BoatsComponent implements OnInit {
   }
 
   createBoatDialog() {
-    const dialogRef = this.dialog.open(AddBoatModalComponent, { width: '35rem'});
+    const dialogConfig = new MatDialogConfig()
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result.status === 0) {
-        this.getBoats();
-      }
-    });
+    dialogConfig.panelClass = 'add-boat-dialog';
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open( AddBoatModalComponent, dialogConfig)
   }
 
   activate(boat: Boats) {

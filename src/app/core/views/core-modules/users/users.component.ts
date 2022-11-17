@@ -1,3 +1,4 @@
+import { StorageService } from './../../../../shared/services/storage/storage.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Users } from 'src/app/shared/models';
@@ -15,11 +16,23 @@ export class UsersComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private notify: NotificationService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private storageService: StorageService
   ) {}
 
   ngOnInit(): void {
     this.getUsers();
+
+    this.setMessagStorage('User Management');
+
+  }
+
+  setMessagStorage(value: string): void {
+    this.storageService.setStorageItem({
+      key: "title",
+      value,
+      storageArea: "sessionStorage"
+    });
   }
 
   getUsers() {

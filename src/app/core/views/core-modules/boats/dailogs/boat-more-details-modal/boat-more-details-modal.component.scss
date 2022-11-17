@@ -1,6 +1,7 @@
 .boat-more-details-dialog .mat-dialog-container {
     padding: 0 !important;
     margin: 0 !important;
+    width: 550px;
     .close-dialog-svg {
         position: absolute;
         margin-top: -1.8rem !important;
@@ -19,6 +20,16 @@
         line-height: 20px;
         text-align: center;
         color: #4B4B4B;
+    }
+    .iconHolder {
+        width: 40px;
+        height: 40px;
+        background-color: #EDF8FF;
+        border-radius: 50%;
+    }
+    .icon {
+        padding: 13px;
+        color: #00A6FF;
     }
 }
 

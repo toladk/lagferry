@@ -1,3 +1,4 @@
+import { StorageService } from './../../../../shared/services/storage/storage.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -33,11 +34,23 @@ export class CrewMembersComponent implements OnInit {
     private usersService: UsersService,
     private notify: NotificationService,
     private route : Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private storageService: StorageService
   ) {}
 
   ngOnInit(): void {
     this.getUsers();
+
+    this.setMessagStorage('Crew Members');
+
+  }
+
+  setMessagStorage(value: string): void {
+    this.storageService.setStorageItem({
+      key: "title",
+      value,
+      storageArea: "sessionStorage"
+    });
   }
 
   getUsers() {

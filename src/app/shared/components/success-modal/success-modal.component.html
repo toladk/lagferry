@@ -1,18 +1,14 @@
 <!-- Close Modal Icon -->
 <div class="d-flex justify-content-end">
-  <svg-icon
-    src="/assets/icons/close-modal-icon.svg"
-    class="close-dialog-svg"
-    (click)="closeDialog()"
-  ></svg-icon>
+    <svg-icon src="/assets/icons/close-modal-icon.svg" class="close-dialog-svg" (click)="closeDialog()"></svg-icon>
 </div>
 
 <div class="row m-1 d-flex justify-content-center align-items-center p-5">
-  <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl 8 ">
-    <div class="d-flex flex-column justify-content-center align-items-center">
-      <img src="/assets/images/success-trophy.png" alt="">
-      <p class="title">Congrats!</p>
-      <p class="sub-title">Your {{description}} has been successfully {{action}} and <br> published</p>
+    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl 8 ">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <img src="/assets/images/success-trophy.png" alt="">
+            <p class="title">Congrats!</p>
+            <p class="sub-title">{{description}} {{action}} and published</p>
+        </div>
     </div>
-  </div>
 </div>

@@ -17,6 +17,9 @@ export class CreateTerminalDialogComponent implements OnInit{
   terminalForm!: FormGroup;
   imageURL!: string;
   zipFile!: string;
+  loading = false;
+  imageURLZip!: string;
+  zipFileName!: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,29 +43,26 @@ export class CreateTerminalDialogComponent implements OnInit{
   }
 
   onSubmit(){
+    this.loading = true;
     let data = {
-      zip: this.zipFile,
-      file: this.terminalForm.value?.file,
+      file: this.imageURLZip
     }
-
-    if (this.terminalForm.valid) {
       this.terminalService
       .addTerminal(data)
       .subscribe({
         next:(res:any) => {
           console.log(res?.errors);
+          this.loading = false;
 
           this.notify.showSuccess(res?.msg)
           this.dialogRef.close(data)
           this.onSubmitSuccess();
         },
         error:(error:any) => {
+          this.loading = false;
           this.notify.showError(error.message);
         }
       })
-
-
-    }
   }
 
   onSubmitSuccess(){
@@ -98,9 +98,12 @@ export class CreateTerminalDialogComponent implements OnInit{
     const target = event.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
 
-    if (file) {
-      this.zipFile = file.name;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageURLZip = reader.result as string;
+      this.zipFileName = file.name
     }
+    reader.readAsDataURL(file)
   }
 
 }

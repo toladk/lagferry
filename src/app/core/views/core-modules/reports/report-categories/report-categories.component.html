@@ -1,0 +1,53 @@
+<div class="page_body">
+    <div class="head_buttons  mt-5 pt-4">
+        <div class="head_buttons_left">
+            <button class="head_buttons_left_boat" (click)="goto('/reports')">Reports</button>
+            <button class="head_buttons_left_crew" (click)="goto('/reports/categories-mgt')">Report Categories</button>
+        </div>
+
+        <div class="head_buttons_right">
+            <button (click)="createReportCategoryDialog('create')">
+        <svg-icon src="/assets/icons/plus.svg" class="me-1"></svg-icon>
+         Add New Category
+      </button>
+        </div>
+    </div>
+
+    <div class="page_title">
+        <h3>All Report Categories</h3>
+    </div>
+
+    <div class="reports_container">
+        <div class="reports_container_card" *ngFor="let category of categories">
+            <div class="card-contents">
+                <div class="card-contents_header d-flex">
+                    <div class="card-contents_header_text">
+                        <div class="card-title">{{category.name | titlecase}}</div>
+                        <span class="card-subtitle">Created By: {{category.user.firstname}} {{category.user.lastname}}</span>
+                    </div>
+
+                    <div class="card-contents_header_action">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                          <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="updateReportCategoryDialog('update', category.reportCategoryId)">
+                              <span>Update</span>
+                            </button>
+                            <button mat-menu-item (click)="deleteCategory(category.reportCategoryId)">
+                              <span>Delete</span>
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <p class="card-subtitle">
+                        {{category.description}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

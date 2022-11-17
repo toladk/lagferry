@@ -1,3 +1,4 @@
+import { StorageService } from './../../../../../shared/services/storage/storage.service';
 import { TerminalService } from './../../../../../shared/services/terminals/terminal.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -15,11 +16,23 @@ export class TerminalListComponent implements OnInit {
   constructor(
     private terminalService:TerminalService,
     private notify: NotificationService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private storageService: StorageService
     ) { }
 
   ngOnInit(): void {
     this.getTerminals();
+
+    this.setMessagStorage('Terminal Management');
+
+  }
+
+  setMessagStorage(value: string): void {
+    this.storageService.setStorageItem({
+      key: "title",
+      value,
+      storageArea: "sessionStorage"
+    });
   }
 
   createTerminalDialog(){
@@ -49,6 +62,32 @@ export class TerminalListComponent implements OnInit {
         this.notify.showError(err.msg);
       },
     });
+  }
+
+  activateTerminal(id: number){
+    this.terminalService.activateTerminal(id).subscribe((result: any) => {
+      if(result.status === 0){
+        this.notify.showSuccess(result.message)
+        this.getTerminals()
+      } else {
+        this.notify.showError(result.message)
+      }
+    }, error => {
+      this.notify.showError(error.error.message || error.error.errors[0])
+    })
+  }
+
+  deactivateTerminal(id: number){
+    this.terminalService.deactivateTerminal(id).subscribe((result: any) => {
+      if(result.status === 0){
+        this.notify.showSuccess(result.message)
+        this.getTerminals()
+      } else {
+        this.notify.showError(result.message)
+      }
+    }, error => {
+      this.notify.showError(error.error.message || error.error.errors[0])
+    })
   }
 
 }

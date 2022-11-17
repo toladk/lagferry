@@ -1,6 +1,6 @@
 <div class="dasboard-wrapper">
 
-  <!-- <aside class="profilebar">
+    <!-- <aside class="profilebar">
     <div class="profilebar_top">
       <div>
       </div>
@@ -25,90 +25,227 @@
     </div>
  </aside> -->
 
-  <div class="dashboard_content">
+    <div class="dashboard_content">
 
-    <h3 class="analytics">Overview</h3>
+        <div class="row mt-4 pt-2">
+            <div class="col-lg-6">
+                <h3 class="analytics">Overview</h3>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-control mt-3" style="width: 160px; float: right; border: 0px; margin-right: 8px;">
+                    <select class="text-center" style="width: 150px; border: 0px; background-color: #F4F8FA; padding: 10px;" (change)="getChangedDashboard($event)">
+                  <option value="THIS_YEAR">This Year</option>
+                  <option value="THIS_MONTH">This Month</option>
+                  <option value="THIS_WEEK">This Week</option>
+                  <option value="LAST_TWO_WEEKS">Last Two Weeks</option>
+                </select>
+                </div>
+            </div>
+        </div>
 
-    <div class="dashboard_content_counter">
+        <div class="dashboard_content_counter">
 
-      <div class="dashboard_content_counter_card">
-        <div class="dashboard_content_counter_card_icon">
-          <span><svg-icon src="assets/svg/boat_route_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
-        </div>
-        <div class="dashboard_content_counter_card_text">
-          <span class="dashboard_content_counter_card_text_count">75KM</span>
-          <span class="dashboard_content_counter_card_text_field">Total boat route covered</span>
-        </div>
-      </div>
+            <div class="dashboard_content_counter_card">
+                <div class="dashboard_content_counter_card_icon">
+                    <span><svg-icon src="assets/svg/boat_route_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
+                </div>
+                <div class="dashboard_content_counter_card_text">
+                    <span class="dashboard_content_counter_card_text_count">75km</span>
+                    <span class="dashboard_content_counter_card_text_field">Total boat route covered</span>
+                </div>
+            </div>
 
-      <div class="dashboard_content_counter_card">
-        <div class="dashboard_content_counter_card_icon">
-          <span><svg-icon src="assets/svg/boat_registered_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
-        </div>
-        <div class="dashboard_content_counter_card_text">
-          <span class="dashboard_content_counter_card_text_count">24</span>
-          <span class="dashboard_content_counter_card_text_field">Total boats registered</span>
-        </div>
-      </div>
+            <div class="dashboard_content_counter_card">
+                <div class="dashboard_content_counter_card_icon">
+                    <span><svg-icon src="assets/svg/boat_registered_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
+                </div>
+                <div class="dashboard_content_counter_card_text">
+                    <span class="dashboard_content_counter_card_text_count">{{ this.summaryDetails?.totalVessels }}</span>
+                    <span class="dashboard_content_counter_card_text_field">Total boats registered</span>
+                </div>
+            </div>
 
-      <div class="dashboard_content_counter_card">
-        <div class="dashboard_content_counter_card_icon">
-          <span><svg-icon src="assets/svg/total_incidents_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
-        </div>
-        <div class="dashboard_content_counter_card_text">
-          <span class="dashboard_content_counter_card_text_count">120</span>
-          <span class="dashboard_content_counter_card_text_field">Total incidents recorded</span>
-        </div>
-      </div>
+            <div class="dashboard_content_counter_card">
+                <div class="dashboard_content_counter_card_icon">
+                    <span><svg-icon src="assets/svg/total_incidents_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
+                </div>
+                <div class="dashboard_content_counter_card_text">
+                    <span class="dashboard_content_counter_card_text_count">{{ this.summaryDetails?.totalIncidents }}</span>
+                    <span class="dashboard_content_counter_card_text_field">Total incidents recorded</span>
+                </div>
+            </div>
 
-      <div class="dashboard_content_counter_card">
-        <div class="dashboard_content_counter_card_icon">
-          <span><svg-icon src="assets/svg/total_feedback_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
+            <div class="dashboard_content_counter_card">
+                <div class="dashboard_content_counter_card_icon">
+                    <span><svg-icon src="assets/svg/total_feedback_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
+                </div>
+                <div class="dashboard_content_counter_card_text">
+                    <span class="dashboard_content_counter_card_text_count">{{ this.summaryDetails?.totalReports }}</span>
+                    <span class="dashboard_content_counter_card_text_field">Total feedback recieved</span>
+                </div>
+            </div>
         </div>
-        <div class="dashboard_content_counter_card_text">
-          <span class="dashboard_content_counter_card_text_count">150</span>
-          <span class="dashboard_content_counter_card_text_field">Total feedback recieved</span>
-        </div>
-      </div>
 
-      <div class="dashboard_content_counter_card">
-        <div class="dashboard_content_counter_card_icon">
-          <span><svg-icon src="assets/svg/total_trips_icon.svg" [svgClass]="'nav-icon'" [applyClass]="true"></svg-icon></span>
+        <h3 class="analytics mt-5">Analytics</h3>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cardLine">
+                    <div class="row">
+                        <div class="col-lg-12 mb-2">
+                            <div class="form-control" style="width: 150px; float: right; border: 0px; margin-right: 8px;">
+                                <select class="text-center" style="width: 140px; border: 0px; background-color: #F4F8FA; padding: 10px;">
+                                  <option value="">All Boat</option>
+                                  <option value="">This Boat</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="">
+                                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels" [stroke]="chartOptions.stroke" [xaxis]="chartOptions.xaxis" [yaxis]="chartOptions.yaxis" [title]="chartOptions.title"></apx-chart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mt-4">
+                <div class="cardLine" style="height: 100%;">
+                    <div class="row">
+                        <div class="col-lg-12 mb-2">
+                            <div class="form-control" style="width: 160px; float: right; border: 0px; margin-right: 8px;">
+                                <select class="text-center" style="width: 150px; border: 0px; background-color: #F4F8FA; padding: 10px;" (change)="getChangedPieChart($event)">
+                                  <option value="THIS_YEAR">This Year</option>
+                                  <option value="THIS_MONTH">This Month</option>
+                                  <option value="THIS_WEEK">This Week</option>
+                                  <option value="LAST_TWO_WEEKS">Last Two Weeks</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="">
+                                <apx-chart [series]="chartPieOptions.series" [dataLabels]="chartPieOptions.dataLabels" [chart]="chartPieOptions.chart" [labels]="chartPieOptions.labels" [responsive]="chartPieOptions.responsive" [colors]="chartPieOptions.colors"></apx-chart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 mt-4">
+                <div class="cardLine">
+                    <div class="row">
+                        <div class="col-lg-12 mb-2">
+                            <div class="form-control" style="width: 150px; float: right; border: 0px; margin-right: 8px;">
+                                <select class="text-center" style="width: 140px; border: 0px; background-color: #F4F8FA; padding: 10px;">
+                                  <option value="1">January</option>
+                                  <option value="2">February</option>
+                                  <option value="3">March</option>
+                                  <option value="4">April</option>
+                                  <option value="5">May</option>
+                                  <option value="6">June</option>
+                                  <option value="7">July</option>
+                                  <option value="8">August</option>
+                                  <option value="9">September</option>
+                                  <option value="10">October</option>
+                                  <option value="11">November</option>
+                                  <option value="12">December</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="">
+                                <apx-chart [series]="chartBarOptions.series" [dataLabels]="chartBarOptions.dataLabels" [chart]="chartBarOptions.chart" [xaxis]="chartBarOptions.xaxis" [title]="chartBarOptions.title"></apx-chart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 mt-4">
+                <div class="cardLine">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mt-2 mb-4 d-flex">
+                                        <div class="">
+                                            <h3 class="fw-bold mb-0" style="margin-right: 15px; margin-top: 13px;">Recent Schedule</h3>
+                                        </div>
+                                        <div class="form-control" style="width: 240px;  border: 0px;">
+                                            <select class="text-center" style="width: 220px; border: 0px; background-color: #F4F8FA; padding: 10px;" (change)="getTerminalId($event)">
+                                              <option selected disabled value="">Select Terminal</option>
+                                              <option *ngFor="let list of terminalList" value="{{ list.terminalId }}">{{ list.name }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mt-2">
+                                        <button type="button" class="btn btn-primary buttonOfMine" style="float: right;" (click)="goto('/schedule')">See More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <table class="table table-hover align-middle mb-0 bg-white mb-4">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th class="pt-3 pb-3">#</th>
+                                        <th class="pt-3 pb-3">Route</th>
+                                        <th class="pt-3 pb-3">Date</th>
+                                        <th class="pt-3 pb-3">Time</th>
+                                        <th class="pt-3 pb-3">Vessel</th>
+                                        <th class="pt-3 pb-3">Crew Members</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngIf="this.terminalDetailsList.length > 0">
+                                    <tr *ngFor="let list of terminalDetailsList; let r = index">
+                                        <td scope="row">
+                                            {{ r+1 }}
+                                        </td>
+                                        <td>
+                                            <p>
+                                                {{ list.route?.name ? list.route?.name : 'NA' }}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            {{ list.scheduleDate ? list.scheduleDate : 'NA' }}
+                                        </td>
+                                        <td class="d-flex">
+                                            <div *ngFor="let data of list.scheduleTime" style="padding-top: 14px; padding-bottom: 15px;">
+                                                <p class="badge rounded-pill badgeMine mb-0" style="margin-right: 6px;">{{ data ? data : 'NA'}}</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {{ list.vessel?.name ? list.vessel?.name : 'NA' }}
+                                        </td>
+                                        <td class="pt-2">
+                                            <div class="d-flex">
+                                                <p class="badgTableCrew mb-0" style="margin-right: 4px;" *ngFor="let data of list.vessel?.crewMembers">
+                                                    {{ data.firstName ? data.firstName.charAt(0) : 'NA' | uppercase }}{{ data.lastName ? data.lastName.charAt(0) : 'NA' | uppercase }}
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody *ngIf="this.terminalDetailsList.length === 0">
+                                    <tr>
+                                        <td colspan="7" class="text-center">
+                                            <div class="mt-3 mb-3 font-23">
+                                                <h6 class="" style="font-size: 16px;">No Data...</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="dashboard_content_counter_card_text">
-          <span class="dashboard_content_counter_card_text_count">270</span>
-          <span class="dashboard_content_counter_card_text_field">Total trips carried out</span>
-        </div>
-      </div>
+
+
     </div>
-
-    <h3 class="analytics">Analytics</h3>
-
-    <div class="charts">
-      <div class="charts_line">
-
-        <div id="linechartdiv">
-        </div>
-      </div>
-
-      <div class="charts_second">
-        <div class="charts_second_pie">
-          <div id="piechartdiv">
-
-          </div>
-
-        </div>
-
-        <div class="charts_second_bar">
-          <div id="barchartdiv">
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
 
 </div>
-

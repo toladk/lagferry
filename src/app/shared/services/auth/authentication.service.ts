@@ -60,8 +60,8 @@ export class AuthenticationService {
     this.router.navigate(['/login']);
   }
 
-  // Just to test that the Bearer token Works! will be removed
-  getVessel() {
-    return this.http.get(environment.apiUrl + 'vessel/api/v1');
-  }
+  // // Just to test that the Bearer token Works! will be removed
+  // getVessel() {
+  //   return this.http.get(environment.apiUrl + 'vessel/api/v1');
+  // }
 }

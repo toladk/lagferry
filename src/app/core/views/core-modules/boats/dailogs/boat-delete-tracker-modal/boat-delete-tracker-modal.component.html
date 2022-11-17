@@ -1,0 +1,31 @@
+<!-- Close Modal Icon -->
+<div class="d-flex justify-content-end">
+    <svg-icon src="/assets/icons/close-modal-icon.svg" class="close-dialog-svg" (click)="closeDialog()"></svg-icon>
+</div>
+
+<div class="row m-1 px-5 py-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="text-center mt-4">
+            <i class="fa fa-triangle-exclamation fa-1x icon text-center iconHolder"></i>
+        </div>
+        <div class="text-center mt-4">
+            <h2 class="fw-bold" style="color: #4B4B4B;">Are you sure you want to delete<br> tracker?</h2>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-4">
+        <div class="row">
+            <div class="col-6 col-lg-6 col-md-6">
+                <button (click)="deleteTracker()" class="fw-bold btn btn_primary_delete_light">Yes</button>
+            </div>
+            <div class="col-6 col-lg-6 col-md-6">
+                <button (click)="closeDialog()" class="fw-bold btn btn_primary_delete_bold">No</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>

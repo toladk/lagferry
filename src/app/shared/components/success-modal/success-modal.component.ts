@@ -23,6 +23,7 @@ export class SuccessModalComponent implements OnInit {
 
   closeDialog(){
     this.dialogRef.close();
+    window.location.reload()
   }
 
 }

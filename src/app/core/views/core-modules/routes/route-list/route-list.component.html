@@ -1,47 +1,72 @@
 <div class="page_body">
-  <div class="head_buttons">
-    <div class="head_buttons_left">
-      <button class="head_buttons_left_boat" (click)="goto('/routes')">Routes</button>
-      <button class="head_buttons_left_crew" (click)="goto('/networks')">Networks</button>
-    </div>
+    <div class="head_buttons  mt-5 pt-4">
+        <div class="head_buttons_left">
+            <button class="head_buttons_left_boat" (click)="goto('/routes')">Routes</button>
+            <button class="head_buttons_left_crew" (click)="goto('/networks')">Networks</button>
+        </div>
 
-    <div class="head_buttons_right">
-      <button (click)="createRouteDialog()">
+        <div class="head_buttons_right">
+            <button (click)="openCreateRouteModal()">
         <svg-icon src="/assets/icons/plus.svg" class="me-1"></svg-icon>
         Add New Route
       </button>
-    </div>
-  </div>
-
-  <div class="boat_title">
-    <h3>All Routes</h3>
-  </div>
-
-  <div class="routes">
-
-    <div class="routes_container">
-      <div class="routes_container_card" *ngFor="let route of routes">
-        <div class="card-contents">
-          <!-- <img src="/assets/svg/boat-img.svg" alt=""> -->
-          <div class="ms-3">
-            <p class="card-title mb-0 mt-2">{{route.name}}</p>
-            <p class="card-subtitle">
-              <svg-icon src="/assets/icons/location-pointer.svg"></svg-icon>
-              {{route?.description }}
-
-              <!-- <br>
-              <svg-icon src="/assets/icons/dot.svg"></svg-icon>
-              {{route.status}} -->
-            </p>
-          </div>
         </div>
-      </div>
     </div>
 
-    <div class="routes_map">
-
+    <div class="boat_title">
+        <h3>All Routes</h3>
     </div>
-  </div>
+
+    <div class="routes">
+
+        <div class="routes_container">
+            <div class="routes_container_card" *ngFor="let route of routes">
+                <div class="card-contents">
+                    <!-- <img src="/assets/svg/boat-img.svg" alt=""> -->
+                    <div class="" style="width: 100%;">
+                        <div class="ms-3">
+                            <div class="ms-3">
+                                <p class="card-title mb-0 mt-2">{{route.name}}</p>
+                                <div class="d-flex">
+                                    <i class="fa fa-location fa-1x text-primary" style="margin-top: 10px;"></i>
+                                    <p class="card-subtitle mt-2 mb-1" style="font-size: 16px; margin-left: 5px;">
+                                        {{route.description}}
+                                    </p>
+                                </div>
+                                <div class="d-flex">
+                                    <i class="fa fa-circle fa-1x text-primary " style="font-size: 8px; margin-top: 7px; margin-left: 3px;"></i>
+                                    <p class="card-subtitle mt-1" style="font-size: 14px; margin-left: 5px;">
+                                        {{route.status}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <button mat-icon-button class="menuIcon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                        <mat-menu #menu="matMenu">
+                            <button *ngIf="route.status === 'INACTIVE'" mat-menu-item class="menuIcon2" (click)="activateRoute(route.routeId)">
+                          <span>Activate</span>
+                        </button>
+                            <button *ngIf="route.status === 'ACTIVE'" mat-menu-item class="menuIcon2" (click)="deactivateRoute(route.routeId)">
+                          <span>Deactivate</span>
+                        </button>
+                            <button mat-menu-item class="menuIcon2" (click)="openUpdateRouteModal(route.routeId)">
+                          <span>Update</span>
+                        </button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="routes_map">
+
+        </div>
+    </div>
 
 
 

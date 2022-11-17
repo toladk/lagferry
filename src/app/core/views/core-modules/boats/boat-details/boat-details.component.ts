@@ -1,3 +1,7 @@
+import { BoatDeleteTrackerModalComponent } from './../dailogs/boat-delete-tracker-modal/boat-delete-tracker-modal.component';
+import { BoatTrackerModalComponent } from './../dailogs/boat-tracker-modal/boat-tracker-modal.component';
+import { AddBoatCrewModalComponent } from './../dailogs/add-boat-crew-modal/add-boat-crew-modal.component';
+import { EditBoatModalComponent } from './../dailogs/edit-boat-modal/edit-boat-modal.component';
 import { BoatMoreDetailsModalComponent } from './../dailogs/boat-more-details-modal/boat-more-details-modal.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -12,13 +16,14 @@ import { Boats } from 'src/app/shared/models/interfaces/boats.interface';
 @Component({
   selector: 'app-boat-details',
   templateUrl: './boat-details.component.html',
-  styleUrls: ['./boat-details.component.scss']
+  styleUrls: ['./boat-details.component.scss'],
 })
 export class BoatDetailsComponent implements OnInit {
 
   boatId!: number;
   routeSub!: Subscription;
   boatDetails: any;
+  crewMemberList!: any[];
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -45,6 +50,7 @@ export class BoatDetailsComponent implements OnInit {
     this.boatService.getSingleBoat(this.boatId).subscribe((result: any) => {
       if (result.status === 0){
         this.boatDetails = result.data;
+        this.crewMemberList = this.boatDetails.crewMembers;
         console.log('boat', this.boatDetails)
       }
     }, error => {
@@ -65,6 +71,54 @@ export class BoatDetailsComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     this.dialog.open( BoatMoreDetailsModalComponent, dialogConfig)
+
+  }
+
+  editBoatDialog(): void{
+
+    const dialogConfig = new MatDialogConfig()
+
+    dialogConfig.panelClass = 'edit-boat-dialog';
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open( EditBoatModalComponent, dialogConfig)
+
+  }
+
+  assignCrewMemeberDialog(): void{
+
+    const dialogConfig = new MatDialogConfig()
+
+    dialogConfig.panelClass = 'add-boat-crew-dialog';
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open( AddBoatCrewModalComponent, dialogConfig)
+
+  }
+
+  boatTrackerDialog(): void{
+
+    const dialogConfig = new MatDialogConfig()
+
+    dialogConfig.panelClass = 'boat-tracker-dialog';
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open( BoatTrackerModalComponent, dialogConfig)
+
+  }
+
+  deleteTrackerDialog(): void{
+
+    const dialogConfig = new MatDialogConfig()
+
+    dialogConfig.panelClass = 'delete-tracker-dialog';
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open( BoatDeleteTrackerModalComponent, dialogConfig)
 
   }
 

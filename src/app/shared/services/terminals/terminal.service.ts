@@ -37,12 +37,12 @@ export class TerminalService {
     return this.http.put<any[]>(environment.apiUrl + 'terminal/api/v1/'+`${id}`+'/image', body);
   }
 
-  activateTerminal(id:any, body:any){
-    return this.http.put<any[]>(environment.apiUrl + 'terminal/api/v1/'+`${id}`+'/activate', body);
+  activateTerminal(id:any){
+    return this.http.put(environment.apiUrl + 'terminal/api/v1/'+`${id}`+'/activate', {});
   }
 
-  deactivateTerminal(id:any, body:any){
-    return this.http.put<any[]>(environment.apiUrl + 'terminal/api/v1/'+`${id}`+'/deactivate', body);
+  deactivateTerminal(id:any){
+    return this.http.put(environment.apiUrl + 'terminal/api/v1/'+`${id}`+'/deactivate', {});
   }
 
 }

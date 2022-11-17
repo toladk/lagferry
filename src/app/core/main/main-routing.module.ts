@@ -49,7 +49,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'report',
+        path: 'reports',
         loadChildren: () =>
           import('../views/core-modules/reports/reports.module').then(
             (m) => m.ReportsModule
@@ -76,13 +76,13 @@ const routes: Routes = [
             (m) => m.MonitorModule
           ),
       },
-      {
-        path: 'feedback',
-        loadChildren: () =>
-          import('../views/core-modules/feedback/feedback.module').then(
-            (m) => m.FeedbackModule
-          ),
-      },
+      // {
+      //   path: 'feedback',
+      //   loadChildren: () =>
+      //     import('../views/core-modules/feedback/feedback.module').then(
+      //       (m) => m.FeedbackModule
+      //     ),
+      // },
       {
         path: 'map',
         loadChildren: () =>

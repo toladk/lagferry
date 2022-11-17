@@ -5,6 +5,7 @@ import { DashboardMaterialModule } from './dashboad-material.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     ReactiveFormsModule,
     DashboardRoutingModule,
     DashboardMaterialModule,
-    AngularSvgIconModule.forRoot()
+    AngularSvgIconModule.forRoot(),
+    NgApexchartsModule
   ]
 })
 export class DashboardModule { }

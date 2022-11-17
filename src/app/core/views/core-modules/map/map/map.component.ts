@@ -1,3 +1,4 @@
+import { StorageService } from './../../../../../shared/services/storage/storage.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MapService } from 'src/app/shared/services/map/map.service';
@@ -119,7 +120,8 @@ export class MapComponent implements OnInit, AfterViewInit {
   );
 
   constructor(
-    public mapService:MapService
+    public mapService:MapService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit(): void {
@@ -140,6 +142,17 @@ export class MapComponent implements OnInit, AfterViewInit {
         // style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
       },
     };
+
+    this.setMessagStorage('Map');
+
+  }
+
+  setMessagStorage(value: string): void {
+    this.storageService.setStorageItem({
+      key: "title",
+      value,
+      storageArea: "sessionStorage"
+    });
   }
 
   // Initialize google map

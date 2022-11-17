@@ -1,1 +1,69 @@
-<p>report-mgt works!</p>
+<div class="page_body">
+    <div class="head_buttons  mt-5 pt-4">
+        <div class="head_buttons_left">
+            <button class="head_buttons_left_boat" (click)="goto('/reports')">Reports</button>
+            <button class="head_buttons_left_crew" (click)="goto('/reports/categories-mgt')">Report Categories</button>
+        </div>
+
+        <div class="head_buttons_right">
+            <button>Export csv</button>
+            <button>Export pdf</button>
+        </div>
+    </div>
+
+    <div class="page_title">
+        <h3>All Reports</h3>
+    </div>
+
+    <div class="reports_container">
+
+        <div class="reports_container_card" *ngFor="let report of reports">
+
+            <div class="card-contents mt-2 mb-2 ">
+
+                <div class="card-contents_header">
+                    <div class="card-contents_header_icon">
+                        {{ report?.reporter?.split(" ")[0][0] }}
+                        <ng-container *ngIf="report?.reporter?.split(' ')[1]">
+                            {{ report?.reporter?.split(" ")[1][0]}}
+                        </ng-container>
+                    </div>
+
+                    <div class="card-contents_header_text">
+                        <span class="card-contents_header_text_email">{{report?.email}}</span>
+                        <span class="card-contents_header_text_reporter">{{report?.reporter}}</span>
+                        <div>
+                            <span><svg-icon src="/assets/icons/dot.svg"></svg-icon> Category: {{report?.category.name}}</span>
+                            <span style="padding-left:10px ;">Status: {{report.status | titlecase}}</span>
+                        </div>
+                    </div>
+
+                    <div class="card-contents_header_action">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="archiveReport(report.reportId)">
+                <span>Archive</span>
+              </button>
+                            <button mat-menu-item *ngIf="report.status ==='OPEN'" (click)="resolveReport(report.reportId)">
+                <span>Resolve</span>
+              </button>
+                        </mat-menu>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="card-contents_body">
+                    <blockquote>
+                        {{report?.description}}
+                    </blockquote>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
