@@ -76,3 +76,65 @@ input::selection {
     padding: 12px 20px;
     border-radius: 2px;
 }
+
+.notificationAdjust {
+    transform: translate3d(0px, 40px, 0px) !important;
+}
+
+.notifications {
+    font-weight: 500;
+}
+
+.notifications {
+    &.bg {
+        background-color: #F4F8FA;
+        padding: 1px 14px;
+        border-radius: 70px;
+        font-weight: 600;
+    }
+    i {
+        color: #000066;
+        visibility: visible;
+        transition: ease-in;
+        visibility: hidden;
+        &.show {
+            visibility: visible;
+        }
+    }
+}
+
+.bell-red {
+    color: red;
+    height: 30px;
+    background-color: #FFF4F4;
+    border-radius: 50px;
+    padding: 9px 6px;
+    width: 30px;
+    text-align: center;
+}
+
+.bell-orange {
+    color: #EB7926;
+    height: 30px;
+    background-color: #FEF6F1;
+    border-radius: 50px;
+    padding: 9px 6px;
+    width: 30px;
+    text-align: center;
+}
+
+.alertTopIcon {
+    color: #565656 !important;
+    border-radius: 50px;
+    padding: 7px 6px;
+    text-align: center;
+}
+
+.dot {
+    height: 5px;
+    width: 5px;
+    background-color: #4B4B4B;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 8px 5px 0px 5px;
+}

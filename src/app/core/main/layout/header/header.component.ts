@@ -12,6 +12,10 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
 export class HeaderComponent implements OnInit {
 
   topTitle!: Observable<string>;
+  notificationIconIsVisible = false;
+  alertIconIsVisible = true;
+  showNotification = false;
+  showAlert = true;
 
   constructor(
     private route: Router,
@@ -42,6 +46,24 @@ export class HeaderComponent implements OnInit {
     this.cookiesStorage.clearStorage()
     this.route.navigateByUrl('/login')
     window.location.reload();
+  }
+
+  goto(data: string): void {
+    console.log(data);
+    this.route.navigateByUrl(data);
+  }
+
+  notificationToggle() {
+    this.notificationIconIsVisible = true;
+    this.alertIconIsVisible = false;
+    this.showNotification = true;
+    this.showAlert = false;
+  }
+  alertToggle() {
+    this.alertIconIsVisible = true;
+    this.notificationIconIsVisible = false;
+     this.showAlert= true;
+     this.showNotification = false;
   }
 
 }
