@@ -1,0 +1,31 @@
+.update-page {
+    padding: 2rem 2rem;
+}
+
+.top-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .page-title {
+    // padding: 1rem;
+    p {
+      font-size: 1.3rem;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+  }
+
+  input {
+    border:none;
+    outline: none;
+    font-size: 12px;
+  }
+  input::placeholder {
+    font-size: 12px;
+  }
+
+  i {
+    font-size: 12px;
+  }
