@@ -1,3 +1,4 @@
+import { AddBoatCameraToAnotherBoatModalComponent } from './../dailogs/add-boat-camera-to-another-boat-modal/add-boat-camera-to-another-boat-modal.component';
 import { BoatDeleteTrackerModalComponent } from './../dailogs/boat-delete-tracker-modal/boat-delete-tracker-modal.component';
 import { BoatTrackerModalComponent } from './../dailogs/boat-tracker-modal/boat-tracker-modal.component';
 import { AddBoatCrewModalComponent } from './../dailogs/add-boat-crew-modal/add-boat-crew-modal.component';
@@ -12,6 +13,7 @@ import { ScheduleService } from 'src/app/shared/services/schedule/schedule.servi
 import { TerminalService } from 'src/app/shared/services/terminals/terminal.service';
 import { BoatsService } from 'src/app/shared/services/boats/boats.service';
 import { Boats } from 'src/app/shared/models/interfaces/boats.interface';
+import { AddBoatCameraModalComponent } from '../dailogs/add-boat-camera-modal/add-boat-camera-modal.component';
 
 @Component({
   selector: 'app-boat-details',
@@ -24,6 +26,7 @@ export class BoatDetailsComponent implements OnInit {
   routeSub!: Subscription;
   boatDetails: any;
   crewMemberList!: any[];
+  cameraId!: number;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -95,6 +98,31 @@ export class BoatDetailsComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     this.dialog.open( AddBoatCrewModalComponent, dialogConfig)
+
+  }
+
+  addCameraDialog(): void{
+
+    const dialogConfig = new MatDialogConfig()
+
+    dialogConfig.panelClass = 'add-camera-dialog';
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open( AddBoatCameraModalComponent, dialogConfig)
+
+  }
+
+  addCameraToAnotherBoatDialog(id: number): void{
+    this.boatService.getCameraById(id);
+
+    const dialogConfig = new MatDialogConfig()
+
+    dialogConfig.panelClass = 'add-camera-to-another-dialog';
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open( AddBoatCameraToAnotherBoatModalComponent, dialogConfig)
 
   }
 

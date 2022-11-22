@@ -14,6 +14,8 @@ import { EditBoatModalComponent } from './dailogs/edit-boat-modal/edit-boat-moda
 import { AddBoatCrewModalComponent } from './dailogs/add-boat-crew-modal/add-boat-crew-modal.component';
 import { BoatTrackerModalComponent } from './dailogs/boat-tracker-modal/boat-tracker-modal.component';
 import { BoatDeleteTrackerModalComponent } from './dailogs/boat-delete-tracker-modal/boat-delete-tracker-modal.component';
+import { AddBoatCameraModalComponent } from './dailogs/add-boat-camera-modal/add-boat-camera-modal.component';
+import { AddBoatCameraToAnotherBoatModalComponent } from './dailogs/add-boat-camera-to-another-boat-modal/add-boat-camera-to-another-boat-modal.component';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { BoatDeleteTrackerModalComponent } from './dailogs/boat-delete-tracker-m
     AddBoatCrewModalComponent,
     BoatTrackerModalComponent,
     BoatDeleteTrackerModalComponent,
+    AddBoatCameraModalComponent,
+    AddBoatCameraToAnotherBoatModalComponent,
   ],
   imports: [
     CommonModule,

@@ -33,6 +33,10 @@ export class UsersService {
     return this.http.put(environment.apiUrl + `user/api/v1/edit`, user);
   }
 
+  updateImage(id: string, payload: any){
+    return this.http.put(environment.apiUrl + `user/api/v1/${id}/image`, payload);
+  }
+
   getCrewMembers() {
     return this.http.get<Users[]>(environment.apiUrl + 'crew-member/api/v1');
   }

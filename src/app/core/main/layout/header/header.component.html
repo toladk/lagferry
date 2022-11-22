@@ -251,7 +251,7 @@
                 <div class="dropdown">
                     <div class="d-flex" type="button" data-bs-toggle="dropdown" aria-expanded="true" aria-haspopup="true">
                         <div class="me-2 ">
-                            <img src="assets/images/img.jpg" alt="" style="width: 40px; height: 40px; border-radius: 50%;">
+                            <img src="assets/images/no-image.png" alt="" style="width: 40px; height: 40px; border-radius: 50%;">
                         </div>
                         <svg style="margin-top: 15px;" width="12" height="10" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -263,16 +263,16 @@
                         <div class="" style="width: 24rem;">
                             <div>
                                 <div class="dropdown-card">
-                                    <div style="width: 40%; margin:0 auto;">
-                                        <img src="assets/images/img.jpg" alt="" class="card-img" style="border-radius: 50%; margin-left: 40px;">
-                                        <p style="margin-left: 30px; font-size: 20px;" class="mt-2 fw-semibold">John Doe
+                                    <div style="width: 63%; margin:0 auto;" class="text-center">
+                                        <img src="assets/images/no-image.png" alt="" class="card-img" style="border-radius: 50%;">
+                                        <p style="font-size: 20px; width: 100%;" class="mt-2 fw-semibold">{{ this.profileDetails?.firstname }} {{ this.profileDetails?.lastname }}
                                         </p>
                                         <div class="email-area">
                                             <div class="d-flex">
                                                 <div class="">
                                                     <i style="color: #00A6FF; font-size: 12px;" class="fa fa-envelope info-icon" aria-hidden="true"></i>
                                                 </div>
-                                                <p style="font-size: 13px;">johndoe@example.com</p>
+                                                <p style="font-size: 13px;">{{ this.profileDetails?.email }}</p>
                                             </div>
                                         </div>
                                         <div class="email-area">
@@ -283,7 +283,7 @@
                                                 <p style="font-size: 13px;">08012345678</p>
                                             </div>
                                         </div>
-                                        <button style="margin-left: 30px;" (click)="goto('/users/update-profile')">
+                                        <button (click)="goto('/users/update-profile')">
                                           <div class="email-area">
                                               <div class="d-flex">
                                                   <i class="fa fa-edit fa-1x mt-1" style="font-size: 13px;"

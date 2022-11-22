@@ -1,3 +1,4 @@
+import { UsersService } from 'src/app/shared/services/users/users.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CookiesStorageService } from 'src/app/shared/services/cookies-storage.service';
@@ -16,11 +17,13 @@ export class HeaderComponent implements OnInit {
   alertIconIsVisible = true;
   showNotification = false;
   showAlert = true;
+  profileDetails: any;
 
   constructor(
     private route: Router,
     private cookiesStorage: CookiesStorageService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private userService: UsersService
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +35,7 @@ export class HeaderComponent implements OnInit {
 
     this.setMessagStorage(sessionStorage.getItem('title')!);
 
+    this.getUserProfile();
   }
 
   setMessagStorage(value: string): void {
@@ -40,6 +44,12 @@ export class HeaderComponent implements OnInit {
       value,
       storageArea: "sessionStorage"
     });
+  }
+
+  getUserProfile(): void{
+    this.userService.getProfileInfo().subscribe((result: any) => {
+      this.profileDetails = result;
+    })
   }
 
   logout(): void{

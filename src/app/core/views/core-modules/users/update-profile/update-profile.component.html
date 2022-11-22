@@ -1,91 +1,86 @@
 <div class="update-page">
-  <div class="top-page mt-5 pt-4">
-    <div class="head_divs pt-4">
-      <div class="head_divs_left">
-        <svg-icon
-          style="cursor: pointer"
-          src="/assets/icons/navigation-arrow.svg"
-          [routerLink]="['/users']"
-        >
-        </svg-icon>
-      </div>
-    </div>
-  </div>
-  <div
-    style="
-      background-color: white;
-      height: 100vh;
-      box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
-      padding: 2% 20%;
-    "
-  >
-    <div style="text-align: center; margin-bottom: 50px">
-      <img
-        src="assets/images/img.jpg"
-        alt=""
-        style="border-radius: 50%; width: 350px; height: 350px"
-      />
-    </div>
-    <div class="d-flex" style="margin-bottom: 20px; text-align: center;">
-      <i
-        class="fa fa-exclamation bell-red icon"
-        style="
-          font-size: 12px;
-          color: rgb(47, 193, 219);
-          height: 20px;
-          background-color: #8edcf0;
-          border-radius: 50px;
-          padding: 3px 6px 9px 4px;
-          width: 20px;
-          text-align: center;
-          margin: 8px 5px 0 0;
-        "
-      ></i>
-      <p class="fw-semibold" style="margin-top: 8px">Personal Information</p>
-    </div>
-    <div class="row gy-5">
-      <div class="col-6">
-        <div class="">
-          <p style="margin: 0; font-weight: 500" class="">First Name</p>
-          <i class="fa-regular fa-user"></i>
-          <input type="text" name="" id="" placeholder="Enter your name here" />
+    <div class="top-page mt-5 pt-4">
+        <div class="head_divs">
+            <div class="head_divs_left">
+                <svg-icon style="cursor: pointer" src="/assets/icons/navigation-arrow.svg" [routerLink]="['/dashboard']">
+                </svg-icon>
+            </div>
         </div>
-      </div>
-      <div class="col-6">
-        <div class="">
-          <p style="margin: 0; font-weight: 500" class="">First Name</p>
-          <i class="fa-regular fa-user"></i>
-          <input type="text" name="" id="" placeholder="Enter your name here" />
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="">
-          <p style="margin: 0; font-weight: 500" class="">First Name</p>
-          @
-          <input type="text" name="" id="" placeholder="Enter your name here" />
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="">
-          <p style="margin: 0; font-weight: 500" class="">First Name</p>
-          <i class="fa-solid fa-phone"></i>
-          <input type="text" name="" id="" placeholder="Enter your name here" />
-        </div>
-      </div>
     </div>
-    <div
-      style="
-        width: 20%;
-        background-color: #00a6ff;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 2px;
-        margin: 0 auto;
+    <div class="card cardprofile" style="padding: 2% 20%;">
+        <div class="mt-3 userImage" style="text-align: center;">
+            <div class="innerUserImage">
+                <i class="fa fa-camera fa-1x mt-3" style="font-size: 86px; color: #000063;" (click)="addPhoto.click()"></i>
+                <input type="file" class="file-input" accept=".jpg, .png" (change)="readImage($event)" #addPhoto>
+            </div>
+            <img *ngIf="!imageURL" src="assets/images/no-image.png" alt="" style="border-radius: 50%; width: 270px; height: 270px; box-shadow: 0px 4px 8px rgb(75 75 75 / 35%);" />
+            <img *ngIf="imageURL && imageURL !== ''" [src]="imageURL" alt="" style="border-radius: 50%; width: 270px; height: 270px; box-shadow: 0px 4px 8px rgb(75 75 75 / 35%);" />
+        </div>
 
-      "
-    >
-      Save Changes
+        <div class="d-flex mt-5" style="margin-bottom: 20px; text-align: center;">
+            <i class="fa fa-exclamation icon-profile"></i>
+            <p class="fw-semibold" style="margin-top: 13px;font-size: 18px;">Personal Information</p>
+        </div>
+        <div class="">
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmitUpdateProfile()">
+                <div class="row gy-3 gx-5">
+                    <div class="col-lg-6">
+                        <mat-form-field appearance="standard" style="width: 100%;">
+                            <mat-label>First Name</mat-label>
+                            <input matInput formControlName="firstname" required />
+                            <mat-error>
+                                <span class="text-danger" *ngIf="profileForm.get('firstname')?.errors && (profileForm.get('firstname')?.touched || profileForm.get('firstname')?.dirty)">
+                                <span *ngIf="profileForm.get('firstname')?.errors?.['required']">First Name is required</span>
+                                <span *ngIf="profileForm.get('firstname')?.errors?.['pattern']">Accept Alphabets Only !!</span>
+                                </span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6">
+                        <mat-form-field appearance="standard" style="width: 100%;">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput formControlName="lastname" required />
+                            <mat-error>
+                                <span class="text-danger" *ngIf="profileForm.get('lastname')?.errors && (profileForm.get('lastname')?.touched || profileForm.get('lastname')?.dirty)">
+                                <span *ngIf="profileForm.get('lastname')?.errors?.['required']">Last Name is required</span>
+                                <span *ngIf="profileForm.get('lastname')?.errors?.['pattern']">Accept Alphabets Only !!</span>
+                                </span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="col-lg-6">
+                        <mat-form-field appearance="standard" style="width: 100%;">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" required />
+                            <mat-error>
+                                <span class="text-danger" *ngIf="profileForm.get('email')?.errors && (profileForm.get('email')?.touched || profileForm.get('email')?.dirty)">
+                                <span *ngIf="profileForm.get('email')?.errors?.['required']">Email is required</span>
+                                <span *ngIf="profileForm.get('email')?.errors?.['pattern']">Invalid Email Address !!</span>
+                                </span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6">
+                        <mat-form-field appearance="standard" style="width: 100%;">
+                            <mat-label>Phone Number</mat-label>
+                            <input matInput formControlName="phoneNumber" required />
+                            <mat-error>
+                                <span class="text-danger" *ngIf="profileForm.get('phoneNumber')?.errors && (profileForm.get('phoneNumber')?.touched || profileForm.get('phoneNumber')?.dirty)">
+                                <span *ngIf="profileForm.get('phoneNumber')?.errors?.['required']">Phone Number is required</span>
+                                <span *ngIf="profileForm.get('phoneNumber')?.errors?.['pattern']">Accept Numbers Only !!</span>
+                                </span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div> -->
+                </div>
+                <div class=" row d-flex justify-content-center mt-4 mb-4">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <button mat-flat-button class="w-100" type="submit" [disabled]="!profileForm.valid">
+                        <span class="fw-normal">Save Changes</span><mat-spinner *ngIf="loading" style="margin-left: 7px;"></mat-spinner>
+                      </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>

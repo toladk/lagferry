@@ -86,6 +86,7 @@ export class EditBoatModalComponent implements OnInit {
         this.notify.showSuccess(result.message);
       } else {
         this.notify.showError(result.message);
+        this.imageURL = '';
       }
     }, error => {
       this.notify.showError('Something has gone wrong on the server');
